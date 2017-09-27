@@ -24,4 +24,19 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
   }));
+  it('should render app.count in #out', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    const regex = new RegExp('^\\s*' + app.count + '\\s*$');
+    expect(compiled.querySelector('#out').textContent).toMatch(regex);
+  }));
+  it('should render #out in .alert.warning', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#out.alert.alert-warning')).toBeTruthy();
+  }));
 });
