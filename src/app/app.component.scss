@@ -1,5 +1,8 @@
 @import
-   '~sass/styles';
+   '~bootstrap/scss/functions',
+   '~bootstrap/scss/variables',
+   '~sass/bs-variables'; // overide bs vars
+
 h1{
    color: map-get($theme-colors, danger);
 }
