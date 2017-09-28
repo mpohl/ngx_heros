@@ -1,8 +1,12 @@
 @import
+   // bs variables
    '~bootstrap/scss/functions',
    '~bootstrap/scss/variables',
    '~sass/bs-variables'; // overide bs vars
+   //'~bootstrap/scss/mixins',
+   //'~bootstrap/scss/type';
 
 h1{
    color: map-get($theme-colors, danger);
+   //@extend h3;
 }
