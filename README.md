@@ -1,3 +1,8 @@
+# run dev server
+ng serve -ec
+# build production: 
+ng build -e=prod --prod --no-sourcemap --aot --target=production
+
 # MySassyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
