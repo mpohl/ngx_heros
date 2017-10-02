@@ -7,8 +7,9 @@ describe('my-sassy-app App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display app.title in <h1>', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    // expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getHeading1()).toEqual('Tour of Heroes');
   });
 });
