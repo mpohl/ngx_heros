@@ -18,14 +18,18 @@ export class DashboardComponent implements OnInit {
     private titleService: Title,
     private translate: TranslateService
   ) {
-    // set browser title
+    /**
+     * set browser title
+     */
     translate.get('dashboard.title').subscribe((res: string) => {
         titleService.setTitle(res);
       });
   }
 
   ngOnInit(): void {
-    // get heroes and show best 4
+    /**
+     * get heroes and show best 4
+     */
     this.heroService.getHeroes()
       .then(heroes => this.heroes = heroes.slice(1, 5));
   }
