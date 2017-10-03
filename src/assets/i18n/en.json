@@ -1,7 +1,8 @@
 {
 	"HELLO": "hello {{value}}",
   "app": {
-    "title" : "my sassy app"
+    "title" : "my sassy app",
+    "description" : "angular2 setup"
   },
 	"dashboard": {
 		"title": "Top heroes"

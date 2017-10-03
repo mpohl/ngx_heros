@@ -12,3 +12,6 @@ msgstr "Top heroes"
 
 msgid "app.title"
 msgstr "my sassy app"
+
+msgid "app.description"
+msgstr "angular2 setup"
