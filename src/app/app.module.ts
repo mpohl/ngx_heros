@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
@@ -47,7 +47,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeroesComponent,
     HeroSearchComponent
   ],
-  providers: [HeroService],
+  providers: [
+    HeroService,
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
