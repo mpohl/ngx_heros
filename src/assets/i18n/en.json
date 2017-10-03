@@ -1,5 +1,8 @@
 {
 	"HELLO": "hello {{value}}",
+  "app": {
+    "title" : "my sassy app"
+  },
 	"dashboard": {
 		"title": "Top heroes"
 	}

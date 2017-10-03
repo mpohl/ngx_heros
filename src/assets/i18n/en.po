@@ -9,3 +9,6 @@ msgstr "Hello %s"
 
 msgid "dashboard.title"
 msgstr "Top heroes"
+
+msgid "app.title"
+msgstr "my sassy app"
