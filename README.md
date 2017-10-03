@@ -2,6 +2,8 @@
 ng serve -ec
 # build production: 
 ng build -e=prod --prod --no-sourcemap --aot --target=production
+# extract translation to json and po
+npm run extract
 
 # MySassyApp
 
