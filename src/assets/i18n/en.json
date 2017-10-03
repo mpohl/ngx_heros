@@ -1,3 +1,6 @@
 {
-	"HELLO": "hello {{value}}"
+	"HELLO": "hello {{value}}",
+	"dashboard": {
+		"title": "Top Heroes"
+	}
 }

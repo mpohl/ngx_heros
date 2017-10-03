@@ -6,3 +6,6 @@ msgstr ""
 
 msgid "HELLO"
 msgstr "Hello %s"
+
+msgid "dashboard.title"
+msgstr "Top Heroes"
