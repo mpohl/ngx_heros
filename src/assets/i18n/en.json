@@ -1,10 +1,15 @@
 {
 	"HELLO": "hello {{value}}",
 	"app": {
-		"description": "A sass powered angular app",
-		"title": "my-sassy-app"
+		"platform_description": "an angular2 app",
+		"platform_title": "my sassy app"
 	},
 	"dashboard": {
+		"plattform_title": "Dashboard",
 		"title": "Top heroes"
+	},
+	"heroes": {
+		"plattform_title": "My heroes",
+		"title": "My heroes"
 	}
 }

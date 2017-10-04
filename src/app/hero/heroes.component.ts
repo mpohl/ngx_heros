@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 import { HeroService }         from '../_services/hero.service';
 import {Hero} from './hero';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'my-heroes',
@@ -14,7 +16,19 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     private heroService: HeroService,
-    private router: Router) { }
+    private router: Router,
+    private translate: TranslateService,
+    private titleService: Title
+  ) {
+
+     /**
+     * set browser title
+     * this.translate is needed to extract with ngx-translate-extract
+     */
+    this.translate.get('heroes.plattform_title').subscribe((res: string) => {
+        titleService.setTitle(res);
+      });
+  }
 
   getHeroes(): void {
     this.heroService

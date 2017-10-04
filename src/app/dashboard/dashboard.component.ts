@@ -20,8 +20,9 @@ export class DashboardComponent implements OnInit {
   ) {
     /**
      * set browser title
+     * this.translate is needed to extract with ngx-translate-extract
      */
-    translate.get('dashboard.title').subscribe((res: string) => {
+    this.translate.get('dashboard.plattform_title').subscribe((res: string) => {
         titleService.setTitle(res);
       });
   }

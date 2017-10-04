@@ -1,5 +1,5 @@
-<h2>My Heroes</h2>
-<div>
+<h2 [innerHTML]="'heroes.title' | translate">My Heroes</h2>
+  <div>
   <label>Hero name:</label> <input #heroName />
   <button (click)="add(heroName.value); heroName.value=''">
     Add

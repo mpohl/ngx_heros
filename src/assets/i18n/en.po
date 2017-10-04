@@ -7,11 +7,20 @@ msgstr ""
 msgid "HELLO"
 msgstr "Hello %s"
 
-msgid "app.description"
-msgstr "A sass powered angular app"
+msgid "app.platform_description"
+msgstr ""
 
-msgid "app.title"
-msgstr "my-sassy-app"
+msgid "app.platform_title"
+msgstr ""
+
+msgid "dashboard.plattform_title"
+msgstr ""
 
 msgid "dashboard.title"
 msgstr "Top heroes"
+
+msgid "heroes.plattform_title"
+msgstr ""
+
+msgid "heroes.title"
+msgstr ""
