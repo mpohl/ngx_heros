@@ -1,9 +1,9 @@
 {
 	"HELLO": "hello {{value}}",
-  "app": {
-    "title" : "my sassy app",
-    "description" : "angular2 setup"
-  },
+	"app": {
+		"description": "A sass powered angular app",
+		"title": "my-sassy-app"
+	},
 	"dashboard": {
 		"title": "Top heroes"
 	}
