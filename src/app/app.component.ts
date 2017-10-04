@@ -11,7 +11,11 @@ export class AppComponent {
   title = 'Tour of Heroes';
   param = {value: 'world'};
 
-  constructor(translate: TranslateService, titleService: Title, metaService: Meta) {
+  constructor(
+    private translate: TranslateService,
+    private titleService: Title,
+    private metaService: Meta
+  ) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
@@ -20,14 +24,16 @@ export class AppComponent {
 
     /**
      * set browser title
+     * this.translate is needed to extract with ngx-translate-extract
      */
-    translate.get('app.title').subscribe((res: string) => {
+    this.translate.get('app.title').subscribe((res: string) => {
         titleService.setTitle(res);
       });
     /**
      * set browser descr
+     * this.translate is needed to extract with ngx-translate-extract
      */
-    translate.get('app.description').subscribe((res: string) => {
+    this.translate.get('app.description').subscribe((res: string) => {
       metaService.addTag({
         name: 'description',
         content: res
