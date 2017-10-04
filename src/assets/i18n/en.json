@@ -1,5 +1,4 @@
 {
-	"HELLO": "hello {{value}}",
 	"app": {
 		"platform_description": "an angular2 app",
 		"platform_title": "my sassy app"
