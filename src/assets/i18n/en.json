@@ -8,6 +8,9 @@
 		"plattform_title": "Dashboard",
 		"title": "Top heroes"
 	},
+	"detail": {
+		"plattform_title": "My Hero"
+	},
 	"heroes": {
 		"plattform_title": "My heroes",
 		"title": "My heroes"

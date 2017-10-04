@@ -19,6 +19,9 @@ msgstr ""
 msgid "dashboard.title"
 msgstr "Top heroes"
 
+msgid "detail.plattform_title"
+msgstr ""
+
 msgid "heroes.plattform_title"
 msgstr ""
 
