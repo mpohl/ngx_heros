@@ -39,7 +39,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         console.warn('mising translation for: ' + params.key);
       }
     }
-    return params['key'];
+    return '&iquest; ' + params['key'] + ' &iquest;';
   }
 }
 
