@@ -1,5 +1,7 @@
 # run dev server
 ng serve -ec
+# start dev backend server on port 3000 with 1s delay, data from json-server/data.json
+npm run json-server
 # build production: 
 ng build -e=prod --prod --no-sourcemap --aot --target=production
 # extract translation to json and po

@@ -8,12 +8,15 @@ import {Hero} from '../hero/hero';
 @Injectable()
 export class HeroSearchService {
 
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private heroesUrl = 'http://localhost:3000/heroes';  // URL to web api
+
   constructor(private http: Http) {
   }
 
   search(term: string): Observable<Hero[]> {
     return this.http
-      .get(`api/heroes/?name=${term}`)
-      .map(response => response.json().data as Hero[]);
+      .get(`${this.heroesUrl}/?name=${term}`)
+      .map(response => response.json() as Hero[]);
   }
 }

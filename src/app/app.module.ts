@@ -7,10 +7,6 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
-// Imports for loading & configuring the in-memory web api
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './_services/in-memory-data.service';
-
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -48,7 +44,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
