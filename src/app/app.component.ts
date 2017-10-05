@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import {LangChangeEvent, TranslateService, TranslationChangeEvent} from '@ngx-translate/core';
 import {Title, Meta} from '@angular/platform-browser';
 
 @Component({
@@ -16,14 +16,50 @@ export class AppComponent {
     private titleService: Title,
     private metaService: Meta
   ) {
-    // this language will be used as a fallback when a translation isn't found in the current language
+    /**
+     * Set default lang
+     * this language will be used as a fallback when a translation isn't found in the current language
+     */
     translate.setDefaultLang('en');
 
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    /**
+     * the lang to use, if the lang isn't available, it will use the current loader to get them
+     */
     translate.use('en');
+
+    /**
+     * set browser title
+     * this.translate is needed to extract with ngx-translate-extract
+     */
+    this.translate.get('app.platform_title').subscribe((res: string) => {
+        titleService.setTitle(res);
+      });
+
+    /**
+     * set browser descr
+     * this.translate is needed to extract with ngx-translate-extract
+     */
+    this.translate.get('app.platform_description').subscribe((res: string) => {
+      metaService.addTag({
+        name: 'description',
+        content: res
+      });
+    });
   }
-  // switch language
+
+  /**
+   * set language
+   * @param {string} language
+   */
   setLanguage(language: string) {
     this.translate.use(language);
   }
+  /*
+  onLangChange.subscribe((event: LangChangeEvent) => {
+    // do something
+  );
+  translate.onTranslationChange.subscribe((event: TranslationChangeEvent) => {
+    // do something
+  );
+  */
 }
