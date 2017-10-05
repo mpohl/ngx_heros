@@ -1,0 +1,17 @@
+{
+	"app": {
+		"platform_description": "Eine angular2 app",
+		"platform_title": "Meine sassy app"
+	},
+	"dashboard": {
+		"plattform_title": "Dashboard",
+		"title": "Super Helden"
+	},
+	"detail": {
+		"plattform_title": "Mein Held"
+	},
+	"heroes": {
+		"plattform_title": "Meine Helden",
+		"title": "Meine Helden"
+	}
+}

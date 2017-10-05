@@ -21,24 +21,9 @@ export class AppComponent {
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
-
-    /**
-     * set browser title
-     * this.translate is needed to extract with ngx-translate-extract
-     */
-    this.translate.get('app.platform_title').subscribe((res: string) => {
-        titleService.setTitle(res);
-      });
-    /**
-     * set browser descr
-     * this.translate is needed to extract with ngx-translate-extract
-     */
-    this.translate.get('app.platform_description').subscribe((res: string) => {
-      metaService.addTag({
-        name: 'description',
-        content: res
-      });
-    });
-
+  }
+  // switch language
+  setLanguage(language: string) {
+    this.translate.use(language);
   }
 }
