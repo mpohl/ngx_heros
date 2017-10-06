@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import {environment} from '../../environments/environment';
 
 import {Hero} from '../hero/hero';
+import 'rxjs/add/operator/finally';
 
 @Injectable()
 export class HeroService {

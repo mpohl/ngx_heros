@@ -9,7 +9,6 @@ import {Meta, Title} from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'Tour of Heroes';
-  param = {value: 'world'};
 
   constructor(private translate: TranslateService,
               private titleService: Title,

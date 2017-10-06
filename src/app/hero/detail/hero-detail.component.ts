@@ -18,6 +18,7 @@ import {HeroService} from '../../_services/hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   hero: Hero;
+  busy = true;
 
   constructor(private heroService: HeroService,
               private route: ActivatedRoute,
@@ -38,10 +39,14 @@ export class HeroDetailComponent implements OnInit {
     this.route.paramMap
       .switchMap((params: ParamMap) => this.heroService.getHero(+params.get('id')))
       .subscribe(
-        hero => this.hero = hero,
+        hero => {
+          this.hero = hero;
+          this.busy = false;
+        },
         error => {
           console.error('Could not get Hero!');
-          this.toastr.error( 'Held nicht gefunden...' , 'Fehler!');
+          this.toastr.error( 'Held nicht gefunden...' , 'API Fehler!');
+          this.busy = false;
         }
       );
   }
