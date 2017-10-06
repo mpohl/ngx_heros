@@ -1,3 +1,6 @@
-@import
-   // use bootstrap
-   '~sass/bs-theme';// overide bs vars
+// use bootstrap
+@import '~sass/bs-theme';// overide bs vars
+
+// ngx toastr
+@import "~ngx-toastr/toastr";
+

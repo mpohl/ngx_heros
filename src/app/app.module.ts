@@ -3,9 +3,12 @@ import {BrowserModule, Title} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+import { ToastrModule } from 'ngx-toastr';
 
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
@@ -54,7 +57,14 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({ // ngx Toastr Module
+      closeButton : true,
+      timeOut: 4000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   declarations: [
     AppComponent,

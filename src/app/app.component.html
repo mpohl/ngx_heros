@@ -1,8 +1,11 @@
-<h1>{{title}}</h1>
-<button (click)="setLanguage('en')">En</button>
-<button (click)="setLanguage('de')">De</button>
-<nav>
-  <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-  <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
+<div id="container-global" class="container">
+  <h1>{{title}}</h1>
+  <alert type="success">hello</alert>
+  <button (click)="setLanguage('en')">En</button>
+  <button (click)="setLanguage('de')">De</button>
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

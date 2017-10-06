@@ -2,10 +2,13 @@ import 'rxjs/add/operator/switchMap';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Location} from '@angular/common';
+import {Title} from '@angular/platform-browser';
+
 import {TranslateService} from '@ngx-translate/core';
+import {ToastrService} from 'ngx-toastr';
+
 import {Hero} from '../hero';
 import {HeroService} from '../../_services/hero.service';
-import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -20,7 +23,8 @@ export class HeroDetailComponent implements OnInit {
               private route: ActivatedRoute,
               private location: Location,
               private titleService: Title,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private toastr: ToastrService) {
     /**
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
@@ -37,6 +41,7 @@ export class HeroDetailComponent implements OnInit {
         hero => this.hero = hero,
         error => {
           console.error('Could not get Hero!');
+          this.toastr.error( 'Held nicht gefunden...' , 'Fehler!');
         }
       );
   }
