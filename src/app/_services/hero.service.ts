@@ -3,13 +3,15 @@ import {Headers, Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import {environment} from '../../environments/environment';
+
 import {Hero} from '../hero/hero';
 
 @Injectable()
 export class HeroService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private heroesUrl = 'http://localhost:3000/heroes';  // URL to web api
+  private heroesUrl = environment.apiUrl + '/heroes';  // URL to web api
 
   constructor(private http: Http) {
   }
