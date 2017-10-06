@@ -5,6 +5,11 @@
     Add
   </button>
 </div>
+
+<ngb-alert *ngIf="busy" [dismissible]="false" type="info">
+  busy...
+</ngb-alert>
+
 <ul class="heroes">
   <li *ngFor="let hero of heroes"
       (click)="onSelect(hero)"

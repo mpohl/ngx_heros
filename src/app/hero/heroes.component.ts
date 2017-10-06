@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 
 import {HeroService} from '../_services/hero.service';
 import {Hero} from './hero';
+import {promise} from 'selenium-webdriver';
 
 @Component({
   selector: 'my-heroes',
@@ -14,6 +15,7 @@ import {Hero} from './hero';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
+  busy= true;
   heroes: Hero[];
   selectedHero: Hero;
 
@@ -32,8 +34,8 @@ export class HeroesComponent implements OnInit {
     });
   }
 
-  getHeroes(): void {
-    this.heroService
+  getHeroes(): Promise<Hero[]> {
+    return this.heroService
       .getHeroes()
       .then(heroes => this.heroes = heroes);
   }
@@ -62,7 +64,10 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getHeroes()
+      .then(
+        () => this.busy = false
+      );
   }
 
   onSelect(hero: Hero): void {
