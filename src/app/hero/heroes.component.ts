@@ -10,7 +10,7 @@ import {Hero} from './hero';
 import {promise} from 'selenium-webdriver';
 
 @Component({
-  selector: 'my-heroes',
+  selector: 'app-my-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })

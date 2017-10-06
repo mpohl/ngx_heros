@@ -12,7 +12,7 @@ import {HeroService} from '../../_services/hero.service';
 
 
 @Component({
-  selector: 'hero-detail',
+  selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
