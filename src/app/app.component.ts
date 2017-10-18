@@ -1,8 +1,7 @@
 import {Inject} from '@angular/core';
 import {Component} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {Meta, Title} from '@angular/platform-browser';
-import {DOCUMENT} from '@angular/platform-browser';
+import {Meta, Title, DOCUMENT} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-app',
