@@ -1,9 +1,14 @@
-<app-hero-search></app-hero-search>
-<h3 [innerHTML]="'dashboard.title' | translate">Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes"  [routerLink]="['/detail', hero.id]"  class="col-1-4">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
-    </div>
-  </a>
-</div>
+<section>
+  <h2 [innerHTML]="'dashboard.title' | translate">Top Heroes</h2>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let hero of heroes">
+      <a [routerLink]="['/detail', hero.id]" class="d-block">
+        {{hero.name}}
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section class="pt-3">
+  <app-hero-search></app-hero-search>
+</section>
