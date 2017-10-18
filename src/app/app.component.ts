@@ -1,7 +1,6 @@
-import {Inject} from '@angular/core';
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {Meta, Title, DOCUMENT} from '@angular/platform-browser';
+import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-app',
@@ -10,7 +9,8 @@ import {Meta, Title, DOCUMENT} from '@angular/platform-browser';
 })
 export class AppComponent {
   public title = 'Tour of Heroes';
-  public isCollapsed = false;
+  public isCollapsed = true;
+  public activeLang = '';
 
   constructor(private translate: TranslateService,
               private titleService: Title,
@@ -25,13 +25,15 @@ export class AppComponent {
     /**
      * the lang to use, if the lang isn't available, it will use the current loader to get them
      */
-    translate.use('en');
+    translate.use('de');
 
     /**
+     * event onLangChanged
      * set html lang attribute
+     * set active Language
      */
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      this._document.documentElement.lang = event.lang;
+      this.activeLang = this._document.documentElement.lang = event.lang;
     });
 
     /**
