@@ -9,7 +9,8 @@ import {Meta, Title, DOCUMENT} from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Tour of Heroes';
+  public title = 'Tour of Heroes';
+  public isCollapsed = false;
 
   constructor(private translate: TranslateService,
               private titleService: Title,
