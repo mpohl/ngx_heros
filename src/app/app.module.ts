@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, BaseRequestOptions} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,6 +20,11 @@ import {HeroesComponent} from './hero/heroes.component';
 import {HeroDetailComponent} from './hero/detail/hero-detail.component';
 import {HeroService} from './_services/hero.service';
 import {HeroSearchComponent} from './hero/search/hero-search.component';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
+import {AuthGuard} from './_guards/auth.guard';
+import {AuthenticationService} from './_services/authentication.service';
+import {UserService} from './_services/user.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -74,11 +79,16 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     DashboardComponent,
     HeroDetailComponent,
     HeroesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    LoginComponent,
+    HomeComponent
   ],
   providers: [
     HeroService,
-    Title
+    Title,
+    AuthGuard,
+    AuthenticationService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
