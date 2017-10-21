@@ -1,6 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
+import {AuthenticationService} from './_services/authentication.service';
 
 @Component({
   selector: 'app-my-app',
@@ -11,11 +12,13 @@ export class AppComponent {
   public title = 'Tour of Heroes';
   public isCollapsed = true;
   public activeLang = '';
+  public isAuthenticated = false;
 
   constructor(private translate: TranslateService,
               private titleService: Title,
               private metaService: Meta,
-              @Inject(DOCUMENT) private _document: any) {
+              @Inject(DOCUMENT) private _document: any,
+              private authenticationService: AuthenticationService) {
     /**
      * Set default lang
      * this language will be used as a fallback when a translation isn't found in the current language
@@ -43,6 +46,21 @@ export class AppComponent {
     this.translate.get('app.platform_title').subscribe((res: string) => {
       titleService.setTitle(res);
     });
+
+    /**
+     * status aof auth of current user
+     * @type {boolean}
+     */
+    this.isAuthenticated = this.authenticationService.isAuthenticated;
+
+    /**
+     * subscribe to auth change event
+     */
+    this.authenticationService
+      .authChanged
+      .subscribe((isAuthenticated: boolean) => {
+        this.isAuthenticated = isAuthenticated;
+      });
 
     /**
      * set browser descr
