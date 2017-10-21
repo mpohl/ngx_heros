@@ -1,16 +1,16 @@
 ﻿import {EventEmitter, Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import {environment} from '../../environments/environment';
 import {isNullOrUndefined} from 'util';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class AuthenticationService {
   public token: string;
   private apiUrl = environment.apiUrl;  // URL to web api
   public isAuthenticated = false;
-  public authChanged = new EventEmitter<Object>();
+  public authChanged = new EventEmitter<Object>(true);
 
   constructor(private http: Http) {
     // set token if saved in local storage
