@@ -6,13 +6,12 @@ const middlewares = jsonServer.defaults();
 const path = require('path');
 const router = jsonServer.router(path.join(__dirname, 'data.json'));
 
+// Set default middlewares (logger, static, cors and no-cache)
+server.use(middlewares);
+
 server.use(function (req, res, next) {
   setTimeout(next, 1000);
 });
-
-
-// Set default middlewares (logger, static, cors and no-cache)
-server.use(middlewares);
 
 // Add custom routes before JSON Server router
 /*
