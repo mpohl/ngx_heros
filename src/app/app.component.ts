@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
 import {AuthenticationService} from './_services/authentication.service';
@@ -6,7 +6,7 @@ import {AuthenticationService} from './_services/authentication.service';
 @Component({
   selector: 'app-my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   public title = 'Tour of Heroes';
@@ -48,7 +48,7 @@ export class AppComponent {
     });
 
     /**
-     * status aof auth of current user
+     * status of auth of current user
      * @type {boolean}
      */
     this.isAuthenticated = this.authenticationService.isAuthenticated;

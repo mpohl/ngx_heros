@@ -12,7 +12,7 @@ import {promise} from 'selenium-webdriver';
 @Component({
   selector: 'app-my-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
   busy= true;
