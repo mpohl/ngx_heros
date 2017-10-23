@@ -19,26 +19,17 @@ server.use(function (req, res, next) {
   setTimeout(next, 1000);
 });
 
-// Add custom routes before JSON Server router
-/*
-server.get('/echo', (req, res) => {
-  res.jsonp(req.query);
-});
-*/
-
-server.use((req, res, next) => {
-  if (req.url === '/authenticate' && req.method === 'POST') {
-    res.status(200);
-    if (req.body.username === 'test' && req.body.password === 'test') {
-      res.jsonp({
-        token: 'fake-jwt-token'
-      });
-    } else {
-      res.jsonp({});
-    }
+/**
+ * Add custom routes before JSON Server router
+ */
+server.post('/authenticate', (req, res) => {
+  // auth user with jwt token
+  if (req.body.username === 'test' && req.body.password === 'test') {
+    res.jsonp({
+      token: 'fake-jwt-token'
+    });
   } else {
-    // Continue to JSON Server router
-    next();
+    res.jsonp({});
   }
 });
 
