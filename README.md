@@ -1,13 +1,13 @@
-# run dev server
+## run dev server
 ng serve -ec
-# start dev backend server on port 3000 with 1s delay, data from json-server/data.json
+## start dev backend server on port 3000 with 1s delay, data from json-server/data.json
 node json-server/serve.ts
-# build production: 
+## build production: 
 ng build -e=prod --prod --no-sourcemap --aot --target=production
-# extract translation to json and po
+## extract translation to json and po
 npm run extract
 
-# MySassyApp
+## MySassyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
 

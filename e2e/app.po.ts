@@ -11,4 +11,8 @@ export class AppPage {
   getHeading1() {
     return element(by.css('h1')).getText();
   }
+
+  getTitle() {
+    return browser.getTitle();
+  }
 }

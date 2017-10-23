@@ -7,9 +7,9 @@ describe('my-sassy-app App', () => {
     page = new AppPage();
   });
 
-  it('should display app.title in <h1>', () => {
+  it('should display "Dashboard" in header.title', () => {
     page.navigateTo();
     // expect(page.getParagraphText()).toEqual('Welcome to app!');
-    expect(page.getHeading1()).toEqual('Tour of Heroes');
+    expect(page.getTitle()).toEqual('Dashboard');
   });
 });
