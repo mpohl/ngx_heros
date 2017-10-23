@@ -1,5 +1,5 @@
 ﻿import {EventEmitter, Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, RequestOptions, Response, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {environment} from '../../environments/environment';
 import {isNullOrUndefined} from 'util';
@@ -20,7 +20,10 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post(this.apiUrl + '/authenticate', JSON.stringify({username: username, password: password}))
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({headers: headers});
+
+    return this.http.post(this.apiUrl + '/authenticate', JSON.stringify({username: username, password: password}), options)
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         const token = response.json() && response.json().token;
