@@ -2,8 +2,9 @@ const jsonServer = require('json-server');
 
 const server = jsonServer.create();
 
-const middlewares = jsonServer.defaults();
-
+// To handle POST, PUT and PATCH you need to use a body-parser
+// You can use the one used by JSON Server
+const middlewares = jsonServer.defaults({'bodyParser': true});
 
 const path = require('path');
 const router = jsonServer.router(path.join(__dirname, 'data.json'));
@@ -25,9 +26,6 @@ server.get('/echo', (req, res) => {
 });
 */
 
-// To handle POST, PUT and PATCH you need to use a body-parser
-// You can use the one used by JSON Server
-server.use(jsonServer.bodyParser);
 server.use((req, res, next) => {
   if (req.url === '/authenticate' && req.method === 'POST') {
     res.status(200);
