@@ -7,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -68,7 +66,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         deps: [HttpClient]
       }
     }),
-    NgbModule.forRoot(),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({ // ngx Toastr Module
       closeButton : true,
