@@ -1,7 +1,10 @@
 <h2 [innerHTML]="'heroes.title' | translate">My Heroes</h2>
   <div>
   <label>Hero name:</label> <input #heroName />
-  <button (click)="add(heroName.value); heroName.value=''">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="add(heroName.value); heroName.value=''">
     Add
   </button>
 </div>

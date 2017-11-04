@@ -5,6 +5,8 @@ import {HttpModule, BaseRequestOptions} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatButtonModule} from '@angular/material';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -56,6 +58,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     HttpModule,
     AppRoutingModule,
     HttpClientModule,
+    MatButtonModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
       useDefaultLang: false,
