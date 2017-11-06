@@ -1,42 +1,29 @@
 msgid ""
 msgstr ""
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
 
-#:
-msgctxt "\"app\""
-msgid "platform_description"
-msgstr "Eine angular2 app"
+msgid "app.platform_description"
+msgstr ""
 
-#:
-msgctxt "\"app\""
-msgid "platform_title"
-msgstr "Meine sassy app"
+msgid "app.platform_title"
+msgstr ""
 
-#:
-msgctxt "\"dashboard\""
-msgid "plattform_title"
-msgstr "Dashboard"
+msgid "dashboard.plattform_title"
+msgstr ""
 
-#:
-msgctxt "\"dashboard\""
-msgid "title"
-msgstr "Super Helden"
+msgid "dashboard.title"
+msgstr ""
 
-#:
-msgctxt "\"detail\""
-msgid "plattform_title"
-msgstr "Mein Held"
+msgid "detail.plattform_title"
+msgstr ""
 
-#:
-msgctxt "\"heroes\""
-msgid "plattform_title"
-msgstr "Meine Helden"
+msgid "heroes.addBtn.content"
+msgstr ""
 
-#:
-msgctxt "\"heroes\""
-msgid "title"
-msgstr "Meine Helden"
+msgid "heroes.plattform_title"
+msgstr ""
 
+msgid "heroes.title"
+msgstr ""

@@ -11,6 +11,9 @@
 		"plattform_title": "My Hero"
 	},
 	"heroes": {
+		"addBtn": {
+			"content": "New Hero"
+		},
 		"plattform_title": "My heroes",
 		"title": "My heroes"
 	}

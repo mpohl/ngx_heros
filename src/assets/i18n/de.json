@@ -5,12 +5,15 @@
 	},
 	"dashboard": {
 		"plattform_title": "Dashboard",
-    "title": "Top 4"
+		"title": "Top 4"
 	},
 	"detail": {
 		"plattform_title": "Mein Held"
 	},
 	"heroes": {
+		"addBtn": {
+			"content": "Neuer Held"
+		},
 		"plattform_title": "Meine Helden",
 		"title": "Meine Helden"
 	}
