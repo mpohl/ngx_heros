@@ -17,10 +17,6 @@ export class AppComponent {
   public activeLang = '';
   public isAuthenticated = false;
 
-  idleState = 'Not started.';
-  timedOut = false;
-  lastPing?: Date = null;
-
   constructor(private translate: TranslateService,
               private titleService: Title,
               private metaService: Meta,
@@ -83,7 +79,7 @@ export class AppComponent {
      */
 
     // sets an idle timeout of 4 minutes
-    idle.setIdle(240);
+    idle.setIdle(5);
     // sets a timeout period of 10 seconds. after 4:10 minutes of inactivity, the user will be considered timed out.
     idle.setTimeout(10);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
