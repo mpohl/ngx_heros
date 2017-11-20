@@ -3,6 +3,8 @@ import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
 import {AuthenticationService} from './_services/authentication.service';
 
+import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
+
 @Component({
   selector: 'app-my-app',
   templateUrl: './app.component.html',
@@ -14,11 +16,17 @@ export class AppComponent {
   public activeLang = '';
   public isAuthenticated = false;
 
+  idleState = 'Not started.';
+  timedOut = false;
+  lastPing?: Date = null;
+
   constructor(private translate: TranslateService,
               private titleService: Title,
               private metaService: Meta,
               @Inject(DOCUMENT) private _document: any,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private idle: Idle) {
+
     /**
      * Set default lang
      * this language will be used as a fallback when a translation isn't found in the current language
@@ -63,6 +71,27 @@ export class AppComponent {
       });
 
     /**
+     * ng idle
+     */
+
+    // sets an idle timeout of 60 seconds
+    idle.setIdle(60);
+    // sets a timeout period of 4 minutes. after 5 minutes of inactivity, the user will be considered timed out.
+    idle.setTimeout(240);
+    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
+    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
+    idle.onIdleEnd.subscribe(() => this.idleState = 'No longer idle.');
+    idle.onTimeout.subscribe(() => {
+      this.idleState = 'Timed out!';
+      this.timedOut = true;
+    });
+    idle.onIdleStart.subscribe(() => this.idleState = 'You\'ve gone idle!');
+    idle.onTimeoutWarning.subscribe((countdown) => this.idleState = 'You will time out in ' + countdown + ' seconds!');
+
+    this.reset();
+
+    /**
      * set browser descr
      * this.translate is needed to extract with ngx-translate-extract
      */
@@ -72,6 +101,12 @@ export class AppComponent {
         content: res
       });
     });
+  }
+
+  reset() {
+    this.idle.watch();
+    this.idleState = 'Started.';
+    this.timedOut = false;
   }
 
   /**
