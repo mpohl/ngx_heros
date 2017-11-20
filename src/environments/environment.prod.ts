@@ -3,3 +3,6 @@ export const environment = {
   envName: 'prod',
   apiUrl: 'http://127.0.0.1:3000'
 };
+
+window.console.log = function () {
+};
