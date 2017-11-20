@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
 import {AuthenticationService} from './_services/authentication.service';
+import {Router} from '@angular/router';
 
 import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 
@@ -25,7 +26,8 @@ export class AppComponent {
               private metaService: Meta,
               @Inject(DOCUMENT) private _document: any,
               private authenticationService: AuthenticationService,
-              private idle: Idle) {
+              private idle: Idle,
+              private router: Router) {
 
     /**
      * Set default lang
@@ -68,6 +70,12 @@ export class AppComponent {
       .authChanged
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
+        if (this.isAuthenticated) {
+          this.idle.watch();
+          console.log('Idle started!');
+        } else {
+          console.log('Idle not started!');
+        }
       });
 
     /**
@@ -81,15 +89,19 @@ export class AppComponent {
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    idle.onIdleEnd.subscribe(() => this.idleState = 'No longer idle.');
-    idle.onTimeout.subscribe(() => {
-      this.idleState = 'Timed out!';
-      this.timedOut = true;
+    idle.onIdleEnd.subscribe(() => {
+      console.log('No longer idle.');
     });
-    idle.onIdleStart.subscribe(() => this.idleState = 'You\'ve gone idle!');
-    idle.onTimeoutWarning.subscribe((countdown) => this.idleState = 'You will time out in ' + countdown + ' seconds!');
-
-    this.reset();
+    idle.onTimeout.subscribe(() => {
+      console.log('Idle timed out!');
+      this.router.navigate(['/login']);
+    });
+    idle.onIdleStart.subscribe(() => {
+      console.log('You\'ve gone idle!');
+    });
+    idle.onTimeoutWarning.subscribe((countdown) => {
+      console.log('You will time out in ' + countdown + ' seconds!');
+    });
 
     /**
      * set browser descr
@@ -101,12 +113,6 @@ export class AppComponent {
         content: res
       });
     });
-  }
-
-  reset() {
-    this.idle.watch();
-    this.idleState = 'Started.';
-    this.timedOut = false;
   }
 
   /**
