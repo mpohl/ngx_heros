@@ -6,6 +6,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // angular material
 import {MatButtonModule, MatInputModule} from '@angular/material';
+import {MomentModule} from 'angular2-moment';
 
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -13,6 +14,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 // import gestures
 import 'hammerjs';
+
+import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
 
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
@@ -56,6 +59,8 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     BrowserModule,
     FormsModule,
     HttpModule,
+    MomentModule,
+    NgIdleKeepaliveModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     MatButtonModule,
