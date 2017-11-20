@@ -5,6 +5,7 @@ import {HttpModule, BaseRequestOptions} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {NgIdleModule} from '@ng-idle/core'
 import {MomentModule} from 'angular2-moment';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -13,8 +14,6 @@ import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoa
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import { ToastrModule } from 'ngx-toastr';
-
-import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
 
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
@@ -59,7 +58,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     FormsModule,
     HttpModule,
     MomentModule,
-    NgIdleKeepaliveModule.forRoot(),
+    NgIdleModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
