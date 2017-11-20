@@ -82,10 +82,10 @@ export class AppComponent {
      * ng idle
      */
 
-    // sets an idle timeout of 60 seconds
-    idle.setIdle(60);
-    // sets a timeout period of 4 minutes. after 5 minutes of inactivity, the user will be considered timed out.
-    idle.setTimeout(240);
+    // sets an idle timeout of 4 minutes
+    idle.setIdle(240);
+    // sets a timeout period of 10 seconds. after 4:10 minutes of inactivity, the user will be considered timed out.
+    idle.setTimeout(10);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
