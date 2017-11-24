@@ -7,7 +7,6 @@ import {ToastrService} from 'ngx-toastr';
 
 import {HeroService} from '../_services/hero.service';
 import {Hero} from './hero';
-import {promise} from 'selenium-webdriver';
 
 @Component({
   selector: 'app-my-heroes',
