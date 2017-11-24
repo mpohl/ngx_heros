@@ -1,19 +1,23 @@
-## run dev server
-ng serve -ec
-## start dev backend server on port 3000 with 1s delay, data from json-server/data.json
-node json-server/serve.ts
-## build production: 
-ng build -e=prod --prod --no-sourcemap --aot --target=production
-## extract translation to json and po
-npm run extract
-
 ## MySassyApp
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
 
-## Development server
+## fake backend server
+Run `node json-server/serve.ts` to start a dev backend server on [http://localhost:300](http://localhost:300) with 1s forced delay,
+data from json-server/data.json 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## dev server
+Run `ng serve -ec`
+
+Navigate to [http://localhost:4200](http://localhost:4200/).
+The app will automatically reload if you change any of the source files.
+
+## build production 
+Run `ng build -e=prod --prod --no-sourcemap --aot --target=production`
+The build artifacts will be stored in the `dist/` directory.
+
+## extract translation to json
+run `npm run extract` to extract translation keys to src/i18n/*.json 
+
 
 ## Code scaffolding
 
