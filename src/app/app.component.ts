@@ -16,6 +16,7 @@ export class AppComponent {
   public isCollapsed = true;
   public activeLang = '';
   public isAuthenticated = false;
+  public disabled = false;
 
   constructor(private translate: TranslateService,
               private titleService: Title,
@@ -24,7 +25,6 @@ export class AppComponent {
               private authenticationService: AuthenticationService,
               private idle: Idle,
               private router: Router) {
-
     /**
      * Set default lang
      * this language will be used as a fallback when a translation isn't found in the current language
