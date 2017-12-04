@@ -2,6 +2,9 @@ import {Component, Inject} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
 import {AuthenticationService} from './_services/authentication.service';
+import {Router} from '@angular/router';
+
+import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 
 @Component({
   selector: 'app-my-app',
@@ -18,7 +21,10 @@ export class AppComponent {
               private titleService: Title,
               private metaService: Meta,
               @Inject(DOCUMENT) private _document: any,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private idle: Idle,
+              private router: Router) {
+
     /**
      * Set default lang
      * this language will be used as a fallback when a translation isn't found in the current language
@@ -60,7 +66,38 @@ export class AppComponent {
       .authChanged
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
+        if (this.isAuthenticated) {
+          this.idle.watch();
+          console.log('Idle started!');
+        } else {
+          console.log('Idle not started!');
+        }
       });
+
+    /**
+     * ng idle
+     */
+
+    // sets an idle timeout of 4 minutes
+    idle.setIdle(240);
+    // sets a timeout period of 10 seconds. after 4:10 minutes of inactivity, the user will be considered timed out.
+    idle.setTimeout(10);
+    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
+    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
+    idle.onIdleEnd.subscribe(() => {
+      console.log('No longer idle.');
+    });
+    idle.onTimeout.subscribe(() => {
+      console.log('Idle timed out!');
+      this.router.navigate(['/login']);
+    });
+    idle.onIdleStart.subscribe(() => {
+      console.log('You\'ve gone idle!');
+    });
+    idle.onTimeoutWarning.subscribe((countdown) => {
+      console.log('You will time out in ' + countdown + ' seconds!');
+    });
 
     /**
      * set browser descr
