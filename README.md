@@ -5,8 +5,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `node json-server/serve.ts` to start a dev backend server on [http://localhost:300](http://localhost:300) with 1s forced delay,
 data from json-server/data.json 
 
-## dev server
+## run dev server
 Run `ng serve -ec`
+use `ng serve -ec --aot` to show some errors which otherwise only come up on buildtime - beware of longer compiletime 
+
+### bulid production (pe patient) and serve with a dev server
+Run `ng serve -e=prod --prod --aot --target=production` to build and serve production
 
 Navigate to [http://localhost:4200](http://localhost:4200/).
 The app will automatically reload if you change any of the source files.
