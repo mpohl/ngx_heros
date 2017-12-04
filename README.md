@@ -11,9 +11,12 @@ Run `ng serve -ec`
 Navigate to [http://localhost:4200](http://localhost:4200/).
 The app will automatically reload if you change any of the source files.
 
-## build production 
+## build production (pe patient)
 Run `ng build -e=prod --prod --no-sourcemap --aot --target=production`
 The build artifacts will be stored in the `dist/` directory.
+
+## bulid production (pe patient) and serve with a dev server
+Run `ng serve -e=prod --prod --aot --target=production` to build and serve production
 
 ## extract translation to json
 run `npm run extract` to extract translation keys to src/i18n/*.json 
