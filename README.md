@@ -7,6 +7,7 @@ data from json-server/data.json
 
 ## run dev server
 Run `ng serve -ec`
+
 use `ng serve -ec --aot` to show some errors which otherwise only come up on buildtime - beware of longer compiletime 
 
 ### bulid production (pe patient) and serve with a dev server
