@@ -4,17 +4,18 @@
   busy...
 </h1>
 
-<ul class="heroes">
-  <li *ngFor="let hero of heroes"
+<mat-list class="heroes">
+  <mat-list-item *ngFor="let hero of heroes"
       (click)="onSelect(hero)"
       [class.selected]="hero === selectedHero">
-    <span class="badge">{{hero.id}}</span>
-    <span>{{hero.name}}</span>
-    <button class="delete"
-            (click)="delete(hero); $event.stopPropagation()">x
+    <mat-icon matListIcon>folder</mat-icon>
+    <h3>{{hero.name}}</h3>
+    <button mat-raised-button
+            (click)="delete(hero); $event.stopPropagation()">
+      <mat-icon matListIcon>delete</mat-icon>
     </button>
-  </li>
-</ul>
+  </mat-list-item>
+</mat-list>
 <div *ngIf="selectedHero">
   <h2>
     {{selectedHero.name | uppercase}} is my hero
@@ -23,15 +24,17 @@
 </div>
 
 <div>
-  <mat-form-field class="example-full-width">
+  <mat-form-field>
   <input
     #heroName
     matInput
     placeholder="Hero Name:">
   </mat-form-field>
+
   <button
-    (click)="add(heroName.value); heroName.value=''"
-    [innerHTML]="'heroes.addBtn.content' | translate"
-    mat-raised-button>
+    mat-raised-button
+    (click)="add(heroName.value); heroName.value=''">
+    {{'heroes.addBtn.content' | translate}}
   </button>
+
 </div>

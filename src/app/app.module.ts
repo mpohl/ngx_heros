@@ -6,7 +6,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // angular material
 import {
-  MatButtonModule, MatInputModule, MatSliderModule
+  MatFormFieldModule, MatButtonModule, MatInputModule, MatSliderModule, MatListModule, MatIconModule
 } from '@angular/material';
 
 import {NgIdleModule} from '@ng-idle/core';
@@ -65,7 +65,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     NgIdleModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    MatButtonModule, MatInputModule, MatSliderModule,
+    MatFormFieldModule, MatButtonModule, MatInputModule, MatSliderModule, MatListModule, MatIconModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
       useDefaultLang: false,
