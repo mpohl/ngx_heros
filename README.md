@@ -9,7 +9,7 @@ data from json-server/data.json
 Run `ng serve -ec`
 
 use `ng serve -ec --aot` to show some errors which otherwise only come up on buildtime - beware of longer compiletime
-#### fix sourcemaps for  bootstrap
+#### fix sourcemaps for bootstrap and angular cli 5
 In "node_modules@angular\cli\models\webpack-configs\common.js" file, in line 162, Add a line devtool: 'source-map', in the returned common configuration object in the getCommonConfig function, e.g.
 
     ...
