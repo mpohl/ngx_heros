@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, BaseRequestOptions} from '@angular/http';
@@ -11,6 +11,7 @@ import {MomentModule} from 'angular2-moment';
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ToastrModule } from 'ngx-toastr';
 
 import {environment} from '../environments/environment';
@@ -75,7 +76,9 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    MDBBootstrapModule.forRoot()
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   declarations: [
     AppComponent,
     DashboardComponent,
