@@ -1,7 +1,7 @@
 
-<h1 *ngIf="!busy && !hero"  type="danger">
+<ngb-alert *ngIf="!busy && !hero" [dismissible]="false" type="danger">
   This hero will not help you!
-</h1>
+</ngb-alert>
 
 <div *ngIf="hero">
   <h2>{{hero.name}} details!</h2>

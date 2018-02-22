@@ -6,9 +6,9 @@
   </button>
 </div>
 
-<h1 *ngIf="busy"  type="info">
+<ngb-alert *ngIf="busy" [dismissible]="false" type="info">
   busy...
-</h1>
+</ngb-alert>
 
 <ul class="heroes">
   <li *ngFor="let hero of heroes"
