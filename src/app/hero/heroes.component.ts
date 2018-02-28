@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 
 import {HeroService} from '../_services/hero.service';
 import {Hero} from './hero';
+import {LocalizeRouterService} from 'localize-router';
 
 @Component({
   selector: 'app-my-heroes',
@@ -22,7 +23,8 @@ export class HeroesComponent implements OnInit {
               private router: Router,
               private translate: TranslateService,
               private titleService: Title,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private localize: LocalizeRouterService) {
 
     /**
      * set browser title
@@ -74,6 +76,7 @@ export class HeroesComponent implements OnInit {
   }
 
   gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
+    const translatedPath: any = this.localize.translateRoute('/detail');
+    this.router.navigate([translatedPath, this.selectedHero.id]);
   }
 }

@@ -1,10 +1,20 @@
 import {NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LocalizeRouterModule, LocalizeRouterSettings, LocalizeParser } from 'localize-router';
+import { LocalizeRouterHttpLoader } from 'localize-router-http-loader';
+import { TranslateService } from '@ngx-translate/core';
+import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {HeroDetailComponent} from './hero/detail/hero-detail.component';
 import {HeroesComponent} from './hero/heroes.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './_guards/auth.guard';
+
+export function HttpLoaderFactory(translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient) {
+  return new LocalizeRouterHttpLoader(translate, location, settings, http);
+}
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -17,7 +27,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [
+    RouterModule.forRoot(routes),
+    LocalizeRouterModule.forRoot(routes, {
+      parser: {
+        provide: LocalizeParser,
+        useFactory: HttpLoaderFactory,
+        deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
+      }
+    })
+  ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

@@ -6,7 +6,10 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MomentModule} from 'angular2-moment';
 
-import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {
+  MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule,
+  TranslateService
+} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -25,10 +28,12 @@ import {AuthGuard} from './_guards/auth.guard';
 import {AuthenticationService} from './_services/authentication.service';
 import {UserService} from './_services/user.service';
 import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
+import {LocalizeParser, LocalizeRouterModule, LocalizeRouterSettings} from 'localize-router';
+import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
@@ -57,10 +62,11 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     MomentModule,
     NgIdleKeepaliveModule.forRoot(),
     AppRoutingModule,
+    LocalizeRouterModule,
     HttpClientModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
-      useDefaultLang: false,
+      // useDefaultLang: false,
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
