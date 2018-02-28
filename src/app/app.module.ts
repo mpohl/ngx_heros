@@ -4,8 +4,6 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule, BaseRequestOptions} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {NgIdleModule} from '@ng-idle/core';
 import {MomentModule} from 'angular2-moment';
 
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -26,6 +24,7 @@ import {HomeComponent} from './home/home.component';
 import {AuthGuard} from './_guards/auth.guard';
 import {AuthenticationService} from './_services/authentication.service';
 import {UserService} from './_services/user.service';
+import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,7 +55,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     FormsModule,
     HttpModule,
     MomentModule,
-    NgIdleModule.forRoot(),
+    NgIdleKeepaliveModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({

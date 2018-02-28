@@ -33,6 +33,10 @@ server.post('/authenticate', (req, res) => {
   }
 });
 
+server.get('/keepalive', (req, res) => {
+  res.jsonp({});
+});
+
 server.use(router);
 
 server.listen(3000, () => {

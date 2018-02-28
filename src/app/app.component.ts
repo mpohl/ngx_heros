@@ -5,6 +5,8 @@ import {AuthenticationService} from './_services/authentication.service';
 import {Router} from '@angular/router';
 
 import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
+import {Keepalive} from '@ng-idle/keepalive';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-my-app',
@@ -16,14 +18,18 @@ export class AppComponent {
   public isCollapsed = true;
   public activeLang = '';
   public isAuthenticated = false;
+  public idleState = '';
+  public idleCountdown = 0;
+  private keepaliveUrl = environment.apiUrl + '/keepalive';  // URL to web keepalive api
 
   constructor(private translate: TranslateService,
               private titleService: Title,
               private metaService: Meta,
               @Inject(DOCUMENT) private _document: any,
               private authenticationService: AuthenticationService,
+              private router: Router,
               private idle: Idle,
-              private router: Router) {
+              private keepalive: Keepalive) {
 
     /**
      * Set default lang
@@ -67,37 +73,45 @@ export class AppComponent {
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
         if (this.isAuthenticated) {
-          this.idle.watch();
-          console.log('Idle started!');
+          this.resetIdle();
         } else {
-          console.log('Idle not started!');
+          this.idleState = '';
+          this.idle.stop();
         }
       });
 
     /**
      * ng idle
      */
-
-    // sets an idle timeout of 4 minutes
-    idle.setIdle(240);
-    // sets a timeout period of 10 seconds. after 4:10 minutes of inactivity, the user will be considered timed out.
-    idle.setTimeout(10);
+    // seconds with no action to start idle countdown
+    idle.setIdle(600);
+    // countdown after idle
+    idle.setTimeout(30);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     idle.onIdleEnd.subscribe(() => {
-      console.log('No longer idle.');
+      this.idleCountdown = 0;
+      this.idleState = '';
     });
     idle.onTimeout.subscribe(() => {
-      console.log('Idle timed out!');
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     });
-    idle.onIdleStart.subscribe(() => {
-      console.log('You\'ve gone idle!');
-    });
+    // idle.onIdleStart.subscribe(() => this.idleState = '');
     idle.onTimeoutWarning.subscribe((countdown) => {
-      console.log('You will time out in ' + countdown + ' seconds!');
+      this.idleState = 'in ' + countdown + ' seconds!';
+      this.idleCountdown = countdown;
     });
+
+    // sets the keepalive ping interval to 15 seconds
+    keepalive.interval(15);
+    // keepalive backend endpoint
+    keepalive.request(this.keepaliveUrl);
+
+    // start Idle checking
+    if (this.isAuthenticated) {
+      this.resetIdle();
+    }
 
     /**
      * set browser descr
@@ -117,5 +131,11 @@ export class AppComponent {
    */
   setLanguage(language: string) {
     this.translate.use(language);
+  }
+
+  resetIdle() {
+    this.idle.watch();
+    this.idleState = '';
+    this.idleCountdown = 0;
   }
 }
