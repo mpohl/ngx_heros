@@ -92,9 +92,9 @@ export class AppComponent {
      * ng idle
      */
     // seconds with no action to start idle countdown
-    idle.setIdle(10);
+    idle.setIdle(600);
     // countdown after idle
-    idle.setTimeout(5);
+    idle.setTimeout(30);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
