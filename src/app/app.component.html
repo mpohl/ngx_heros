@@ -35,10 +35,11 @@
       <div class="mt-2 mt-md-0" *ngIf="isAuthenticated==true">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" routerLink="/login">Logout</a>
-            <span *ngIf="idleCountdown" translate [translateParams]="{count: idleCountdown}">
-              app.idleCountdownHint
-            </span>
+            <a class="nav-link" href="javascript:void(0);" routerLink="/login">Logout
+              <span *ngIf="idleCountdown" translate [translateParams]="{count: idleCountdown}">
+                app.idleCountdownHint
+              </span>
+            </a>
           </li>
         </ul>
       </div>
