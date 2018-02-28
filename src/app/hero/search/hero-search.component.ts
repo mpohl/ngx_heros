@@ -14,6 +14,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 import { HeroSearchService } from '../../_services/hero-search.service';
 import {Hero} from '../hero';
+import {LocalizeRouterService} from 'localize-router';
 
 @Component({
   selector: 'app-hero-search',
@@ -27,7 +28,8 @@ export class HeroSearchComponent implements OnInit {
 
   constructor(
     private heroSearchService: HeroSearchService,
-    private router: Router) {}
+    private router: Router,
+    private localize: LocalizeRouterService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -51,7 +53,8 @@ export class HeroSearchComponent implements OnInit {
   }
 
   gotoDetail(hero: Hero): void {
-    let link = ['/detail', hero.id];
+    const translatedPath: any = this.localize.translateRoute('/detail');
+    const link = [translatedPath, hero.id];
     this.router.navigate(link);
   }
 }

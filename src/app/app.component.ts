@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
 import {environment} from '../environments/environment';
+import {LocalizeRouterService} from 'localize-router';
 
 @Component({
   selector: 'app-my-app',
@@ -29,7 +30,8 @@ export class AppComponent {
               private authenticationService: AuthenticationService,
               private router: Router,
               private idle: Idle,
-              private keepalive: Keepalive) {
+              private keepalive: Keepalive,
+              private localize: LocalizeRouterService) {
 
     /**
      * Set default lang
@@ -40,7 +42,13 @@ export class AppComponent {
     /**
      * the lang to use, if the lang isn't available, it will use the current loader to get them
      */
-    translate.use('de');
+    // translate.use('de');
+
+    /**
+     * get active lang from LocalizeRouterService
+     * set html lang attribute
+     */
+    this.activeLang = this._document.documentElement.lang = localize.parser.currentLang;
 
     /**
      * event onLangChanged
@@ -84,9 +92,9 @@ export class AppComponent {
      * ng idle
      */
     // seconds with no action to start idle countdown
-    idle.setIdle(600);
+    idle.setIdle(10);
     // countdown after idle
-    idle.setTimeout(30);
+    idle.setTimeout(5);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
@@ -95,7 +103,8 @@ export class AppComponent {
       this.idleState = '';
     });
     idle.onTimeout.subscribe(() => {
-      this.router.navigate(['login']);
+      const translatedPath: any = this.localize.translateRoute('/login');
+      this.router.navigate([translatedPath]);
     });
     // idle.onIdleStart.subscribe(() => this.idleState = '');
     idle.onTimeoutWarning.subscribe((countdown) => {
@@ -127,10 +136,10 @@ export class AppComponent {
 
   /**
    * set language
-   * @param {string} language
+   * @param {string} lang
    */
-  setLanguage(language: string) {
-    this.translate.use(language);
+  changeLanguage(lang: string) {
+    this.localize.changeLanguage(lang);
   }
 
   resetIdle() {
