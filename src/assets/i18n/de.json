@@ -1,7 +1,8 @@
 {
 	"app": {
 		"platform_description": "Eine angular2 app",
-		"platform_title": "Meine sassy app"
+		"platform_title": "Meine sassy app",
+    "idleCountdownHint": "in {{count}} Sekunden!"
 	},
 	"dashboard": {
 		"plattform_title": "Dashboard",
