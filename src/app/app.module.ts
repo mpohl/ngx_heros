@@ -31,6 +31,7 @@ import {UserService} from './_services/user.service';
 import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
 import {LocalizeParser, LocalizeRouterModule, LocalizeRouterSettings} from 'localize-router';
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
+import {SubmoduleModule} from './submodule/submodule.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -81,7 +82,8 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    SubmoduleModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   declarations: [

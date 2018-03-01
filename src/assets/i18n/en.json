@@ -1,18 +1,24 @@
 {
-	"app": {
+	"COMPONENT_app": {
 		"platform_description": "an angular2 app",
 		"platform_title": "my sassy app",
     "idleCountdownHint": "in {{count}} seconds!"
 	},
-	"dashboard": {
+	"COMPONENT_dashboard": {
 		"plattform_title": "Dashboard",
 		"title": "Top heroes"
 	},
-	"detail": {
+	"COMPONENT_detail": {
 		"plattform_title": "My Hero"
 	},
-	"heroes": {
+  "ROUTER_heroes" : "heroes",
+	"COMPONENT_heroes": {
 		"plattform_title": "My heroes",
 		"title": "My heroes"
-	}
+	},
+  "ROUTER_submodule" : "submodule",
+  "COMPONENT_submodule" : {
+    "name" : "Submodule",
+    "title" : "Submodule works!"
+  }
 }

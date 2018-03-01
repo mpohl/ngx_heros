@@ -6,7 +6,7 @@ import {Title} from '@angular/platform-browser';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'my-dashboard',
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('dashboard.plattform_title').subscribe((res: string) => {
+    this.translate.get('COMPONENT_dashboard.plattform_title').subscribe((res: string) => {
         titleService.setTitle(res);
       });
   }

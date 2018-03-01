@@ -1,5 +1,5 @@
 <section>
-  <h2 [innerHTML]="'dashboard.title' | translate">Top Heroes</h2>
+  <h2 [innerHTML]="'COMPONENT_dashboard.title' | translate">Top Heroes</h2>
   <ul class="list-group">
     <li class="list-group-item list-group-item-action" *ngFor="let hero of heroes">
       <a [routerLink]="['/detail' | localize, hero.id]" class="d-block">
