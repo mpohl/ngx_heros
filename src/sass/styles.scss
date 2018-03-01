@@ -3,4 +3,13 @@
 @import "bootstrap/bootstrap";
 @import "mdb-free";
 
-
+.heroes{
+  @extend .list-group;
+  .hero{
+    @extend .list-group-item;
+    @extend .list-group-item-action;
+    .name{
+      display: block;
+    }
+  }
+}
