@@ -1,14 +1,14 @@
-<section>
-  <h2 [innerHTML]="'COMPONENT_dashboard.title' | translate">Top Heroes</h2>
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-action" *ngFor="let hero of heroes">
-      <a [routerLink]="['/detail' | localize, hero.id]" class="d-block">
+<h1 [innerHTML]="'COMPONENT_dashboard.title' | translate">Dashboard</h1>
+<section class="topHeroes">
+  <h2 [innerHTML]="'COMPONENT_dashboard.topHeroes' | translate">Top Heroes</h2>
+  <ul class="heroes">
+    <li *ngFor="let hero of heroes" class="hero">
+      <a [routerLink]="['/detail' | localize, hero.id]" class="name">
         {{hero.name}}
       </a>
     </li>
   </ul>
 </section>
-
-<section class="pt-3">
+<section class="searchHero">
   <app-hero-search></app-hero-search>
 </section>
