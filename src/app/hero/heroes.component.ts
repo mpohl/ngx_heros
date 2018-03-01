@@ -30,7 +30,7 @@ export class HeroesComponent implements OnInit {
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('heroes.plattform_title').subscribe((res: string) => {
+    this.translate.get('COMPONENT_heroes.plattform_title').subscribe((res: string) => {
       titleService.setTitle(res);
     });
   }

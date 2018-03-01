@@ -63,7 +63,7 @@ export class AppComponent {
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('app.platform_title').subscribe((res: string) => {
+    this.translate.get('COMPONENT_app.platform_title').subscribe((res: string) => {
       titleService.setTitle(res);
     });
 
@@ -126,7 +126,7 @@ export class AppComponent {
      * set browser descr
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('app.platform_description').subscribe((res: string) => {
+    this.translate.get('COMPONENT_app.platform_description').subscribe((res: string) => {
       metaService.addTag({
         name: 'description',
         content: res

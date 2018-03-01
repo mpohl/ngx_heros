@@ -30,7 +30,7 @@ export class HeroDetailComponent implements OnInit {
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('detail.plattform_title').subscribe((res: string) => {
+    this.translate.get('COMPONENT_detail.plattform_title').subscribe((res: string) => {
       titleService.setTitle(res);
     });
   }
