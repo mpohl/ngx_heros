@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-test',
+  selector: 'app-submodule',
   templateUrl: './submodule.component.html',
   styleUrls: ['./submodule.component.scss']
 })
