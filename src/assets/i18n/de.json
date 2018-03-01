@@ -6,7 +6,8 @@
 	},
 	"COMPONENT_dashboard": {
 		"plattform_title": "Dashboard",
-    "title": "Top 4"
+    "title" : "Dashboard",
+    "topHeroes": "Top 4 Helden"
 	},
 	"COMPONENT_detail": {
 		"plattform_title": "Mein Held"
