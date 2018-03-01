@@ -134,14 +134,6 @@ export class AppComponent {
     });
   }
 
-  /**
-   * set language
-   * @param {string} lang
-   */
-  changeLanguage(lang: string) {
-    this.localize.changeLanguage(lang);
-  }
-
   resetIdle() {
     this.idle.watch();
     this.idleState = '';
