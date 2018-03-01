@@ -14,5 +14,10 @@
 	"heroes": {
 		"plattform_title": "My heroes",
 		"title": "My heroes"
-	}
+	},
+  "ROUTER_submodule" : "Submodule",
+  "MODULE_submodule" : {
+    "name" : "Submodule",
+    "title" : "Submodule works!"
+  }
 }
