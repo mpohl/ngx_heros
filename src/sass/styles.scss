@@ -3,3 +3,14 @@
 
 // ngx toastr
 @import "~ngx-toastr/toastr";
+
+.heroes{
+  @extend .list-group;
+  .hero{
+    @extend .list-group-item;
+    @extend .list-group-item-action;
+    .name{
+      display: block;
+    }
+  }
+}
