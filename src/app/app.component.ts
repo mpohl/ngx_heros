@@ -19,8 +19,6 @@ export class AppComponent {
   public isCollapsed = true;
   public activeLang = '';
   public isAuthenticated = false;
-  public idleState = '';
-  public idleCountdown = 0;
   private keepaliveUrl = environment.apiUrl + '/keepalive';  // URL to web keepalive api
 
   constructor(private translate: TranslateService,
@@ -83,7 +81,6 @@ export class AppComponent {
         if (this.isAuthenticated) {
           this.resetIdle();
         } else {
-          this.idleState = '';
           this.idle.stop();
         }
       });
@@ -94,22 +91,13 @@ export class AppComponent {
     // seconds with no action to start idle countdown
     idle.setIdle(600);
     // countdown after idle
-    idle.setTimeout(30);
+    idle.setTimeout(20);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    idle.onIdleEnd.subscribe(() => {
-      this.idleCountdown = 0;
-      this.idleState = '';
-    });
     idle.onTimeout.subscribe(() => {
       const translatedPath: any = this.localize.translateRoute('/login');
       this.router.navigate([translatedPath]);
-    });
-    // idle.onIdleStart.subscribe(() => this.idleState = '');
-    idle.onTimeoutWarning.subscribe((countdown) => {
-      this.idleState = 'in ' + countdown + ' seconds!';
-      this.idleCountdown = countdown;
     });
 
     // sets the keepalive ping interval to 15 seconds
@@ -134,17 +122,7 @@ export class AppComponent {
     });
   }
 
-  /**
-   * set language
-   * @param {string} lang
-   */
-  changeLanguage(lang: string) {
-    this.localize.changeLanguage(lang);
-  }
-
   resetIdle() {
     this.idle.watch();
-    this.idleState = '';
-    this.idleCountdown = 0;
   }
 }
