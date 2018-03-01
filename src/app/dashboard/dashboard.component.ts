@@ -6,7 +6,7 @@ import {Title} from '@angular/platform-browser';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'my-dashboard',
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

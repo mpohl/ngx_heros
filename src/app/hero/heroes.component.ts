@@ -15,7 +15,7 @@ import {LocalizeRouterService} from 'localize-router';
   styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
-  busy= true;
+  busy = true;
   heroes: Hero[];
   selectedHero: Hero;
 
