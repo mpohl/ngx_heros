@@ -29,6 +29,7 @@ import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
 import {LocalizeParser, LocalizeRouterModule, LocalizeRouterSettings} from 'localize-router';
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 import {SubmoduleModule} from './submodule/submodule.module';
+import { TopnavComponent } from './topnav/topnav.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -89,7 +90,8 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     HeroesComponent,
     HeroSearchComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    TopnavComponent
   ],
   providers: [
     HeroService,
