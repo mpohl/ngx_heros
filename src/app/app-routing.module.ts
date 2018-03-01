@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'detail/:id', component: HeroDetailComponent, canActivate: [AuthGuard]},
   {path: 'heroes', component: HeroesComponent, canActivate: [AuthGuard]},
   // otherwise redirect to home
-  {path: '**', redirectTo: 'dashboard'}
+  {path: '**', redirectTo: '/dashboard'}
 ];
 
 @NgModule({
