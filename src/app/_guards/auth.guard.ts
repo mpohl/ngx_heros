@@ -1,10 +1,11 @@
 ﻿import {Injectable} from '@angular/core';
 import {Router, CanActivate} from '@angular/router';
+import {LocalizeRouterService} from 'localize-router';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private localize: LocalizeRouterService) {
   }
 
   canActivate() {
@@ -14,7 +15,8 @@ export class AuthGuard implements CanActivate {
     }
 
     // not logged in so redirect to login page
-    this.router.navigate(['/login']);
+    const translatedPath: any = this.localize.translateRoute('/login');
+    this.router.navigate([translatedPath]);
     return false;
   }
 }

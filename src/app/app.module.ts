@@ -4,12 +4,9 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule, BaseRequestOptions} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {NgIdleModule} from '@ng-idle/core';
 import {MomentModule} from 'angular2-moment';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -28,10 +25,13 @@ import {HomeComponent} from './home/home.component';
 import {AuthGuard} from './_guards/auth.guard';
 import {AuthenticationService} from './_services/authentication.service';
 import {UserService} from './_services/user.service';
+import {NgIdleKeepaliveModule} from '@ng-idle/keepalive';
+import {LocalizeParser, LocalizeRouterModule, LocalizeRouterSettings} from 'localize-router';
+import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
@@ -58,12 +58,13 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     FormsModule,
     HttpModule,
     MomentModule,
-    NgIdleModule.forRoot(),
+    NgIdleKeepaliveModule.forRoot(),
     AppRoutingModule,
+    LocalizeRouterModule,
     HttpClientModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
-      useDefaultLang: false,
+      // useDefaultLang: false,
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
