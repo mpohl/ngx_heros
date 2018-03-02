@@ -4,6 +4,18 @@
 // ngx toastr
 @import "~ngx-toastr/toastr";
 
+ul{
+   @extend .mt-3;
+}
+
+section{
+  @extend .mt-4;
+}
+
+input{
+  @extend .form-control;
+}
+
 .heroes{
   @extend .list-group;
   .hero{

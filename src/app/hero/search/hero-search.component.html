@@ -1,5 +1,6 @@
 <h2>Hero Search</h2>
-<input #searchBox (keyup)="search(searchBox.value)" />
+
+<input #searchBox id="searchTerm" (keyup)="search(searchBox.value)" placeholder="Search fo a hero" />
 
 <ul class="heroes">
   <li class="hero"
