@@ -23,13 +23,12 @@ import {LocalizeRouterService} from 'localize-router';
   providers: [HeroSearchService]
 })
 export class HeroSearchComponent implements OnInit {
-  heroes: Observable<Hero[]>;
+  private heroes: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
   constructor(
-    private heroSearchService: HeroSearchService,
-    private router: Router,
-    private localize: LocalizeRouterService) {}
+    private heroSearchService: HeroSearchService
+  ) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -50,11 +49,5 @@ export class HeroSearchComponent implements OnInit {
         console.log(error);
         return Observable.of<Hero[]>([]);
       });
-  }
-
-  gotoDetail(hero: Hero): void {
-    const translatedPath: any = this.localize.translateRoute('/detail');
-    const link = [translatedPath, hero.id];
-    this.router.navigate(link);
   }
 }
