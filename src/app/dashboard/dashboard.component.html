@@ -1,4 +1,9 @@
 <h1 [innerHTML]="'COMPONENT_dashboard.title' | translate">Dashboard</h1>
+
+<section class="searchHero">
+  <app-hero-search></app-hero-search>
+</section>
+
 <section class="topHeroes">
   <h2 [innerHTML]="'COMPONENT_dashboard.topHeroes' | translate">Top Heroes</h2>
   <ul class="heroes">
@@ -8,7 +13,4 @@
       </a>
     </li>
   </ul>
-</section>
-<section class="searchHero">
-  <app-hero-search></app-hero-search>
 </section>

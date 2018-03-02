@@ -1,10 +1,9 @@
-<div id="search-component">
-  <h4>Hero Search</h4>
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-  <div>
-    <div *ngFor="let hero of heroes | async"
-         (click)="gotoDetail(hero)" class="search-result" >
-      {{hero.name}}
-    </div>
-  </div>
-</div>
+<h2>Hero Search</h2>
+<input #searchBox (keyup)="search(searchBox.value)" />
+
+<ul class="heroes">
+  <li class="hero"
+      *ngFor="let hero of heroes | async">
+    <a class="name" [routerLink]="['/detail' | localize, hero.id]">{{hero.name}}</a>
+  </li>
+</ul>
