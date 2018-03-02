@@ -5,6 +5,7 @@ import {AuthenticationService} from '../_services/authentication.service';
 import {LocalizeRouterService} from 'localize-router';
 
 @Component({
+  selector: 'app-login',
   moduleId: module.id,
   templateUrl: 'login.component.html'
 })
