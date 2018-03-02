@@ -3,6 +3,20 @@
 @import "bootstrap/bootstrap";
 @import "mdb-free";
 
+ul{
+   @extend .mt-3;
+}
+
+section{
+  @extend .mt-4;
+}
+
+input{
+  @extend .form-control;
+}
+
+
+
 .heroes{
   @extend .list-group;
   .hero{
