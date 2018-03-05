@@ -10,7 +10,7 @@ import {Hero} from './hero';
 import {LocalizeRouterService} from 'localize-router';
 
 @Component({
-  selector: 'app-my-heroes',
+  selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss']
 })
