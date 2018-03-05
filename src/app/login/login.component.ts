@@ -1,6 +1,6 @@
 ﻿import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {AuthenticationService} from '../_services/authentication.service';
 import {LocalizeRouterService} from 'localize-router';
 
