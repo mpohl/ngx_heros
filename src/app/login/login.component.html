@@ -14,12 +14,12 @@
       <input id="username" required minlength="4" formControlName="username">
 
       <div *ngIf="username.invalid && (username.dirty || username.touched)">
-        <div *ngIf="username['errors'].required">
+        <small *ngIf="username['errors'].required">
           Username is required.
-        </div>
-        <div *ngIf="username['errors'].minlength">
+        </small>
+        <small *ngIf="username['errors'].minlength">
           Username must be at least 4 characters long.
-        </div>
+        </small>
       </div>
     </div>
 
@@ -28,12 +28,12 @@
       <label for="password">Password</label>
       <input id="password" type="password" formControlName="password">
       <div *ngIf="password.invalid && (password.dirty || password.touched)">
-        <div *ngIf="password['errors'].required">
+        <small *ngIf="password['errors'].required">
           Password is required.
-        </div>
-        <div *ngIf="password['errors'].minlength">
+        </small>
+        <small *ngIf="password['errors'].minlength">
           Password must be at least 4 characters long.
-        </div>
+        </small>
       </div>
     </div>
 
