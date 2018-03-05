@@ -11,13 +11,13 @@
          [ngClass]="{ 'has-error': username.invalid && (username.dirty || username.touched) }">
 
       <label for="username">Username</label>
-      <input id="username" required minlength="4" formControlName="username">
+      <input id="username" class="form-control" required minlength="4" formControlName="username">
 
       <div *ngIf="username.invalid && (username.dirty || username.touched)">
-        <small *ngIf="username['errors'].required">
+        <small class="validation-msg" *ngIf="username['errors'].required">
           Username is required.
         </small>
-        <small *ngIf="username['errors'].minlength">
+        <small class="validation-msg" *ngIf="username['errors'].minlength">
           Username must be at least 4 characters long.
         </small>
       </div>
@@ -26,12 +26,12 @@
     <div class="form-group"
          [ngClass]="{ 'has-error': password.invalid && (password.dirty || password.touched) }">
       <label for="password">Password</label>
-      <input id="password" type="password" formControlName="password">
+      <input id="password" type="password" class="form-control" formControlName="password">
       <div *ngIf="password.invalid && (password.dirty || password.touched)">
-        <small *ngIf="password['errors'].required">
+        <small class="validation-msg" *ngIf="password['errors'].required">
           Password is required.
         </small>
-        <small *ngIf="password['errors'].minlength">
+        <small class="validation-msg" *ngIf="password['errors'].minlength">
           Password must be at least 4 characters long.
         </small>
       </div>
