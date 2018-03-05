@@ -17,6 +17,9 @@
 		"plattform_title": "My heroes",
 		"title": "My heroes"
 	},
+  "COMPONENT_login" : {
+    "loginError" : "Username or password wrong."
+  },
   "ROUTER_submodule" : "submodule",
   "COMPONENT_submodule" : {
     "name" : "Submodule",

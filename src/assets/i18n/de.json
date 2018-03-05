@@ -17,6 +17,9 @@
 		"plattform_title": "Meine Helden",
 		"title": "Meine Helden"
 	},
+  "COMPONENT_login" : {
+    "loginError" : "Benutzername oder Passwort falsch."
+  },
   "ROUTER_submodule" : "untermodul",
   "COMPONENT_submodule" : {
     "name" : "Untermodul",

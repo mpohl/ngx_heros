@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule, Title} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, BaseRequestOptions} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -60,6 +60,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     MomentModule,
     NgIdleKeepaliveModule.forRoot(),
