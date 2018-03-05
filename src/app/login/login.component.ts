@@ -11,7 +11,10 @@ import {LocalizeRouterService} from 'localize-router';
 })
 
 export class LoginComponent implements OnInit {
-  model: any = {};
+  model: any = {
+    username : 'test',
+    password : 'test'
+  };
   loading = false;
   error = '';
 
