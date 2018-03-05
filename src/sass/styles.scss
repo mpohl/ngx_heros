@@ -3,19 +3,40 @@
 @import "bootstrap/bootstrap";
 @import "mdb-free";
 
+// form styles
+.validation-msg{
+  position: absolute;
+  top:50px;
+}
+.form-control:focus {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+// general bootstrap form mappings
+input{
+  &.ng-touched {
+    &.ng-invalid {
+      @extend .is-invalid;
+    }
+    &.ng-valid {
+      @extend .is-valid;
+    }
+  }
+}
+.form-group.has-error{
+  input,label,.validation-msg{
+    @extend .text-danger;
+  }
+}
+
+// vertical margins
 ul{
    @extend .mt-3;
 }
-
 section{
   @extend .mt-4;
 }
-
-input{
-  @extend .form-control;
-}
-
-
 
 .heroes{
   @extend .list-group;
@@ -25,5 +46,15 @@ input{
     .name{
       display: block;
     }
+  }
+}
+
+// component specific styles
+app-login{
+  .form-group{
+    @extend .mt-5;
+  }
+  .btn{
+    margin:0;
   }
 }
