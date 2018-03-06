@@ -21,8 +21,36 @@ input{
   }
 }
 
+// vertical spacing
 nav,h1,h2,section{
   @extend .mb-4;
+}
+
+// navigation
+.nav-top-wrapper{
+  @extend .navbar;
+  @extend .navbar-dark;
+  @extend .bg-dark;
+}
+.nav-top{
+  @extend .container;
+}
+.nav-top-main-wrapper{
+  //@extend .collapse;
+  //@extend .navbar-collapse;
+}
+.nav-top-main{
+  @extend .mr-auto;
+}
+
+.nav-top-main, .nav-top-lang, .nav-top-logout{
+  @extend .navbar-nav;
+  li{
+    @extend .nav-item;
+    a{
+      @extend .nav-link;
+    }
+  }
 }
 
 .heroes{
