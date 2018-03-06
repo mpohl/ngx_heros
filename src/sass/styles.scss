@@ -21,16 +21,9 @@ input{
   }
 }
 
-
-ul{
-  @extend .mt-3;
+nav,h1,h2,section{
+  @extend .mb-4;
 }
-
-section{
-  @extend .mt-4;
-}
-
-
 
 .heroes{
   @extend .list-group;
