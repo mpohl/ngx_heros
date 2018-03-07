@@ -4,6 +4,7 @@ import {DOCUMENT} from '@angular/platform-browser';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from '../_services/authentication.service';
 import {Idle} from '@ng-idle/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-topnav',
@@ -23,12 +24,15 @@ export class TopnavComponent implements OnInit {
     private translate: TranslateService,
     private authenticationService: AuthenticationService,
     private idle: Idle,
-  ) {
+    private router: Router
+  ) {}
+
+  ngOnInit() {
     /**
      * get active lang from LocalizeRouterService
      * set html lang attribute
      */
-    this.activeLang = this._document.documentElement.lang = localize.parser.currentLang;
+    this.activeLang = this._document.documentElement.lang = this.localize.parser.currentLang;
 
     /**
      * event onLangChanged
@@ -53,16 +57,18 @@ export class TopnavComponent implements OnInit {
         this.idleCountdown = 0;
       });
 
-    idle.onIdleEnd.subscribe(() => {
+    this.idle.onIdleEnd.subscribe(() => {
       this.idleCountdown = 0;
     });
 
-    idle.onTimeoutWarning.subscribe((countdown) => {
+    this.idle.onTimeoutWarning.subscribe((countdown) => {
       this.idleCountdown = countdown;
     });
   }
 
-  ngOnInit() {
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate([this.localize.translateRoute('/dashboad')]);
   }
 
   /**

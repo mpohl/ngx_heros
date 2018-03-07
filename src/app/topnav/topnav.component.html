@@ -34,14 +34,17 @@
 
     <div class="nav-top-logout-wrapper">
       <div class="nav-top-logout">
-          <a href="javascript:void(0);" [routerLink]="'/login'| localize">
+          <a href="javascript:void(0);"
+             *ngIf="isAuthenticated==false"
+             [routerLink]="'/login'| localize">
+              {{'COMPONENT_topnav.login' | translate}}
+          </a>
+          <a href="javascript:void(0);"
+             *ngIf="isAuthenticated==true"
+             (click)="logout()">
             <span *ngIf="isAuthenticated==true"
                   [innerHTML]="'COMPONENT_topnav.logout' | translate">
               logout
-            </span>
-            <span *ngIf="isAuthenticated==false"
-                  [innerHTML]="'COMPONENT_topnav.login' | translate" >
-              login
             </span>
             <span
               *ngIf="idleCountdown"
