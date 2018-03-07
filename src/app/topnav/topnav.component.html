@@ -56,17 +56,15 @@
     </div>
 
     <div class="nav-top-logout-wrapper" *ngIf="isAuthenticated==true">
-      <ul class="navbar-nav nav-top-logout">
-        <li class="nav-item">
-          <a class="nav-link"
+      <div class="navbar-nav nav-top-logout">
+          <a class="nav-link navbar-text"
              href="javascript:void(0);"
              [routerLink]="'/login'| localize">Logout
             <span *ngIf="idleCountdown" translate [translateParams]="{count: idleCountdown}">
               COMPONENT_app.idleCountdownHint
             </span>
           </a>
-        </li>
-      </ul>
+      </div>
     </div>
   </nav>
 </div>
