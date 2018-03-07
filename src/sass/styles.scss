@@ -22,13 +22,14 @@ input{
 }
 
 // vertical spacing
-nav,h1,h2,section{
+.nav-top-wrapper,h1,h2,section{
   @extend .mb-4;
 }
 
 // navigation
 .nav-top-wrapper{
   @extend .navbar;
+  @extend .navbar-expand-sm;
   @extend .navbar-dark;
   @extend .bg-dark;
 }
@@ -52,6 +53,7 @@ nav,h1,h2,section{
     }
   }
 }
+
 
 .heroes{
   @extend .list-group;
