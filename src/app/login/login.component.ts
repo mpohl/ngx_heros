@@ -3,9 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {AuthenticationService} from '../_services/authentication.service';
 import {LocalizeRouterService} from 'localize-router';
-import 'rxjs/add/operator/takeUntil';
-// import { takeUntil } from 'rxjs/operators'; // for rxjs ^5.5.0 lettable operators
 import {Subject} from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'app-login',
