@@ -2,14 +2,14 @@ import 'rxjs/add/operator/switchMap';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Location} from '@angular/common';
-import {Title} from '@angular/platform-browser';
 
-import {TranslateService} from '@ngx-translate/core';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {ToastrService} from 'ngx-toastr';
 
 import {Hero} from '../hero';
 import {HeroService} from '../../_services/hero.service';
 import {Subject} from 'rxjs/Subject';
+import {BrowserTitleService} from '../../_services/browser-title.service';
 
 
 @Component({
@@ -21,24 +21,26 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<any> = new Subject();
   public hero: Hero;
   public busy = true;
+  private browserTitleKey = 'COMPONENT_detail.plattform_title';
 
   constructor(private heroService: HeroService,
               private route: ActivatedRoute,
               private location: Location,
-              private titleService: Title,
+              private titleService: BrowserTitleService,
               private translate: TranslateService,
               private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
+
     /**
      * set browser title
-     * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_detail.plattform_title')
+    this.titleService.set(this.browserTitleKey);
+    this.translate.onLangChange
       .takeUntil(this.ngUnsubscribe)
-      .subscribe((res: string) => {
-      this.titleService.setTitle(res);
+      .subscribe((event: LangChangeEvent) => {
+        this.titleService.set(this.browserTitleKey);
     });
 
     this.route.paramMap

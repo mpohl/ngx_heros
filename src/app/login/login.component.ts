@@ -5,6 +5,8 @@ import {AuthenticationService} from '../_services/authentication.service';
 import {LocalizeRouterService} from 'localize-router';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {BrowserTitleService} from '../_services/browser-title.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,7 @@ import 'rxjs/add/operator/takeUntil';
 export class LoginComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe: Subject<any> = new Subject();
+  private browserTitleKey = 'COMPONENT_login.plattform_title';
 
   public loginForm: FormGroup;
 
@@ -26,10 +29,21 @@ export class LoginComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private authenticationService: AuthenticationService,
               private localize: LocalizeRouterService,
+              private titleService: BrowserTitleService,
+              private translate: TranslateService,
               private fb: FormBuilder) {
   }
 
   ngOnInit() {
+    /**
+     * set browser title
+     */
+    this.titleService.set(this.browserTitleKey);
+    this.translate.onLangChange
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((event: LangChangeEvent) => {
+        this.titleService.set(this.browserTitleKey);
+    });
     // reset login status
     this.authenticationService.logout();
     this.createForm();

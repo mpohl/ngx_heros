@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import {Title} from '@angular/platform-browser';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 
 import {ToastrService} from 'ngx-toastr';
 
@@ -9,6 +8,7 @@ import {HeroService} from '../_services/hero.service';
 import {Hero} from './hero';
 import {LocalizeRouterService} from 'localize-router';
 import {Subject} from 'rxjs/Subject';
+import {BrowserTitleService} from '../_services/browser-title.service';
 
 @Component({
   selector: 'app-heroes',
@@ -21,23 +21,26 @@ export class HeroesComponent implements OnInit, OnDestroy {
   public busy = true;
   public heroes: Hero[];
   public selectedHero: Hero;
+  private browserTitleKey = 'COMPONENT_heroes.plattform_title';
 
   constructor(private heroService: HeroService,
               private router: Router,
               private translate: TranslateService,
-              private titleService: Title,
+              private titleService: BrowserTitleService,
               private toastr: ToastrService,
-              private localize: LocalizeRouterService) {}
+              private localize: LocalizeRouterService) {
+  }
 
   ngOnInit(): void {
+
     /**
      * set browser title
-     * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_heroes.plattform_title')
+    this.titleService.set(this.browserTitleKey);
+    this.translate.onLangChange
       .takeUntil(this.ngUnsubscribe)
-      .subscribe((res: string) => {
-      this.titleService.setTitle(res);
+      .subscribe((event: LangChangeEvent) => {
+        this.titleService.set(this.browserTitleKey);
     });
 
     this.getHeroes()

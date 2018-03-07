@@ -9,6 +9,7 @@ import {Keepalive} from '@ng-idle/keepalive';
 import {environment} from '../environments/environment';
 import {LocalizeRouterService} from 'localize-router';
 import {Subject} from 'rxjs/Subject';
+import {BrowserTitleService} from './_services/browser-title.service';
 
 @Component({
   selector: 'app-my-app',
@@ -17,6 +18,7 @@ import {Subject} from 'rxjs/Subject';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<any> = new Subject();
+  private browserTitleKey = 'COMPONENT_app.platform_title';
   public title = 'Tour of Heroes';
   public isCollapsed = true;
   public activeLang = '';
@@ -24,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private keepaliveUrl = environment.apiUrl + '/keepalive';  // URL to web keepalive api
 
   constructor(private translate: TranslateService,
-              private titleService: Title,
+              private titleService: BrowserTitleService,
               private metaService: Meta,
               @Inject(DOCUMENT) private _document: any,
               private authenticationService: AuthenticationService,
@@ -38,8 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
      * Set default lang
      * this language will be used as a fallback when a translation isn't found in the current language
      */
-    this.translate.setDefaultLang('en');
-
+    this.translate.setDefaultLang(this.localize.parser.currentLang);
     /**
      * the lang to use, if the lang isn't available, it will use the current loader to get them
      */
@@ -50,7 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
      * set html lang attribute
      */
     this.activeLang = this._document.documentElement.lang = this.localize.parser.currentLang;
-
     /**
      * event onLangChanged
      * set html lang attribute
@@ -64,12 +64,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
     /**
      * set browser title
-     * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_app.platform_title')
+    this.titleService.set(this.browserTitleKey);
+    this.translate.onLangChange
       .takeUntil(this.ngUnsubscribe)
-      .subscribe((res: string) => {
-      this.titleService.setTitle(res);
+      .subscribe((event: LangChangeEvent) => {
+        this.titleService.set(this.browserTitleKey);
     });
 
     /**
