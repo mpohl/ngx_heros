@@ -21,31 +21,25 @@
     </div>
 
     <div class="nav-top-lang-wrapper">
-      <ul>
-        <li>
-          {{('COMPONENT_topnav.lang_abr_' + activeLang)|translate}}
-          <ul class="nav-top-lang dropdown">
-            <li [class.active]="activeLang == 'de'">
-              <a href="javascript:void(0);" (click)="changeLanguage('de')">{{'COMPONENT_topnav.lang_abr_de'|translate}}</a>
-            </li>
-            <li [class.active]="activeLang == 'en'">
-              <a href="javascript:void(0);"  (click)="changeLanguage('en')">{{'COMPONENT_topnav.lang_abr_en'|translate}}</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+        {{('COMPONENT_topnav.lang_abr_' + activeLang)|translate}}
+        <ul class="nav-top-lang dropdown">
+          <li [class.active]="activeLang == 'de'">
+            <a href="javascript:void(0);" (click)="changeLanguage('de')">{{'COMPONENT_topnav.lang_abr_de'|translate}}</a>
+          </li>
+          <li [class.active]="activeLang == 'en'">
+            <a href="javascript:void(0);"  (click)="changeLanguage('en')">{{'COMPONENT_topnav.lang_abr_en'|translate}}</a>
+          </li>
+        </ul>
     </div>
 
     <div class="nav-top-logout-wrapper" *ngIf="isAuthenticated==true">
-      <ul class="nav-top-logout">
-        <li>
+      <div class="nav-top-logout">
           <a href="javascript:void(0);" [routerLink]="'/login'| localize">Logout
             <span *ngIf="idleCountdown" translate [translateParams]="{count: idleCountdown}">
               COMPONENT_app.idleCountdownHint
             </span>
           </a>
-        </li>
-      </ul>
+      </div>
     </div>
   </nav>
 </div>
