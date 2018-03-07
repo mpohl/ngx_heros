@@ -1,16 +1,20 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {LocalizeRouterService} from 'localize-router';
 import {DOCUMENT} from '@angular/platform-browser';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from '../_services/authentication.service';
 import {Idle} from '@ng-idle/core';
+import {Router} from '@angular/router';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-topnav',
   templateUrl: './topnav.component.html',
   styleUrls: ['./topnav.component.scss']
 })
-export class TopnavComponent implements OnInit {
+export class TopnavComponent implements OnInit, OnDestroy {
+
+  private ngUnsubscribe: Subject<any> = new Subject();
 
   public activeLang = '';
   public isAuthenticated = false;
@@ -23,18 +27,23 @@ export class TopnavComponent implements OnInit {
     private translate: TranslateService,
     private authenticationService: AuthenticationService,
     private idle: Idle,
-  ) {
+    private router: Router
+  ) {}
+
+  ngOnInit() {
     /**
      * get active lang from LocalizeRouterService
      * set html lang attribute
      */
-    this.activeLang = this._document.documentElement.lang = localize.parser.currentLang;
+    this.activeLang = this._document.documentElement.lang = this.localize.parser.currentLang;
 
     /**
      * event onLangChanged
      * set active Language
      */
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    this.translate.onLangChange
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((event: LangChangeEvent) => {
       this.activeLang  = event.lang;
     });
 
@@ -48,21 +57,33 @@ export class TopnavComponent implements OnInit {
      */
     this.authenticationService
       .authChanged
+      .takeUntil(this.ngUnsubscribe)
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
         this.idleCountdown = 0;
       });
 
-    idle.onIdleEnd.subscribe(() => {
+    this.idle.onIdleEnd
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(() => {
       this.idleCountdown = 0;
     });
 
-    idle.onTimeoutWarning.subscribe((countdown) => {
+    this.idle.onTimeoutWarning
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((countdown) => {
       this.idleCountdown = countdown;
     });
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate([this.localize.translateRoute('/dashboad')]);
   }
 
   /**

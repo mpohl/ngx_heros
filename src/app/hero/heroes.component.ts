@@ -1,38 +1,57 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import {Title} from '@angular/platform-browser';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 
 import {ToastrService} from 'ngx-toastr';
 
 import {HeroService} from '../_services/hero.service';
 import {Hero} from './hero';
 import {LocalizeRouterService} from 'localize-router';
+import {Subject} from 'rxjs/Subject';
+import {BrowserTitleService} from '../_services/browser-title.service';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss']
 })
-export class HeroesComponent implements OnInit {
-  busy = true;
-  heroes: Hero[];
-  selectedHero: Hero;
+export class HeroesComponent implements OnInit, OnDestroy {
+
+  private ngUnsubscribe: Subject<any> = new Subject();
+  public busy = true;
+  public heroes: Hero[];
+  public selectedHero: Hero;
+  private browserTitleKey = 'COMPONENT_heroes.plattform_title';
 
   constructor(private heroService: HeroService,
               private router: Router,
               private translate: TranslateService,
-              private titleService: Title,
+              private titleService: BrowserTitleService,
               private toastr: ToastrService,
               private localize: LocalizeRouterService) {
+  }
+
+  ngOnInit(): void {
 
     /**
      * set browser title
-     * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_heroes.plattform_title').subscribe((res: string) => {
-      titleService.setTitle(res);
+    this.titleService.set(this.browserTitleKey);
+    this.translate.onLangChange
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((event: LangChangeEvent) => {
+        this.titleService.set(this.browserTitleKey);
     });
+
+    this.getHeroes()
+      .then(
+        () => this.busy = false
+      );
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   getHeroes(): Promise<Hero[]> {
@@ -62,13 +81,6 @@ export class HeroesComponent implements OnInit {
           this.selectedHero = null;
         }
       });
-  }
-
-  ngOnInit(): void {
-    this.getHeroes()
-      .then(
-        () => this.busy = false
-      );
   }
 
   onSelect(hero: Hero): void {

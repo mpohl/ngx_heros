@@ -21,7 +21,6 @@ import {HeroDetailComponent} from './hero/detail/hero-detail.component';
 import {HeroService} from './_services/hero.service';
 import {HeroSearchComponent} from './hero/search/hero-search.component';
 import {LoginComponent} from './login/login.component';
-import {HomeComponent} from './home/home.component';
 import {AuthGuard} from './_guards/auth.guard';
 import {AuthenticationService} from './_services/authentication.service';
 import {UserService} from './_services/user.service';
@@ -30,6 +29,7 @@ import {LocalizeParser, LocalizeRouterModule, LocalizeRouterSettings} from 'loca
 import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 import {SubmoduleModule} from './submodule/submodule.module';
 import { TopnavComponent } from './topnav/topnav.component';
+import {BrowserTitleService} from './_services/browser-title.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -91,7 +91,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     HeroesComponent,
     HeroSearchComponent,
     LoginComponent,
-    HomeComponent,
     TopnavComponent
   ],
   providers: [
@@ -99,7 +98,8 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     Title,
     AuthGuard,
     AuthenticationService,
-    UserService
+    UserService,
+    BrowserTitleService
   ],
   bootstrap: [AppComponent]
 })

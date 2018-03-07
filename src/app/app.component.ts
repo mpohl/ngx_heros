@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
 import {AuthenticationService} from './_services/authentication.service';
@@ -8,13 +8,17 @@ import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
 import {environment} from '../environments/environment';
 import {LocalizeRouterService} from 'localize-router';
+import {Subject} from 'rxjs/Subject';
+import {BrowserTitleService} from './_services/browser-title.service';
 
 @Component({
   selector: 'app-my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe: Subject<any> = new Subject();
+  private browserTitleKey = 'COMPONENT_app.platform_title';
   public title = 'Tour of Heroes';
   public isCollapsed = true;
   public activeLang = '';
@@ -22,21 +26,21 @@ export class AppComponent {
   private keepaliveUrl = environment.apiUrl + '/keepalive';  // URL to web keepalive api
 
   constructor(private translate: TranslateService,
-              private titleService: Title,
+              private titleService: BrowserTitleService,
               private metaService: Meta,
               @Inject(DOCUMENT) private _document: any,
               private authenticationService: AuthenticationService,
               private router: Router,
               private idle: Idle,
               private keepalive: Keepalive,
-              private localize: LocalizeRouterService) {
+              private localize: LocalizeRouterService) {}
 
+  ngOnInit() {
     /**
      * Set default lang
      * this language will be used as a fallback when a translation isn't found in the current language
      */
-    translate.setDefaultLang('en');
-
+    this.translate.setDefaultLang(this.localize.parser.currentLang);
     /**
      * the lang to use, if the lang isn't available, it will use the current loader to get them
      */
@@ -46,23 +50,26 @@ export class AppComponent {
      * get active lang from LocalizeRouterService
      * set html lang attribute
      */
-    this.activeLang = this._document.documentElement.lang = localize.parser.currentLang;
-
+    this.activeLang = this._document.documentElement.lang = this.localize.parser.currentLang;
     /**
      * event onLangChanged
      * set html lang attribute
      * set active Language
      */
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    this.translate.onLangChange
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((event: LangChangeEvent) => {
       this.activeLang = this._document.documentElement.lang = event.lang;
     });
 
     /**
      * set browser title
-     * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_app.platform_title').subscribe((res: string) => {
-      titleService.setTitle(res);
+    this.titleService.set(this.browserTitleKey);
+    this.translate.onLangChange
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((event: LangChangeEvent) => {
+        this.titleService.set(this.browserTitleKey);
     });
 
     /**
@@ -76,6 +83,7 @@ export class AppComponent {
      */
     this.authenticationService
       .authChanged
+      .takeUntil(this.ngUnsubscribe)
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
         if (this.isAuthenticated) {
@@ -89,21 +97,23 @@ export class AppComponent {
      * ng idle
      */
     // seconds with no action to start idle countdown
-    idle.setIdle(600);
+    this.idle.setIdle(600);
     // countdown after idle
-    idle.setTimeout(20);
+    this.idle.setTimeout(20);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
-    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+    this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    idle.onTimeout.subscribe(() => {
+    this.idle.onTimeout
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(() => {
       const translatedPath: any = this.localize.translateRoute('/login');
       this.router.navigate([translatedPath]);
     });
 
     // sets the keepalive ping interval to 15 seconds
-    keepalive.interval(15);
+    this.keepalive.interval(15);
     // keepalive backend endpoint
-    keepalive.request(this.keepaliveUrl);
+    this.keepalive.request(this.keepaliveUrl);
 
     // start Idle checking
     if (this.isAuthenticated) {
@@ -114,12 +124,19 @@ export class AppComponent {
      * set browser descr
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_app.platform_description').subscribe((res: string) => {
-      metaService.addTag({
+    this.translate.get('COMPONENT_app.platform_description')
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((res: string) => {
+      this.metaService.addTag({
         name: 'description',
         content: res
       });
     });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   resetIdle() {

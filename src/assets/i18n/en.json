@@ -25,10 +25,12 @@
 		"title": "My heroes"
 	},
   "COMPONENT_login" : {
+    "plattform_title": "Login",
     "loginError" : "Username or password wrong."
   },
   "ROUTER_submodule" : "submodule",
   "COMPONENT_submodule" : {
+    "plattform_title": "Submodule",
     "name" : "Submodule",
     "title" : "Submodule works!"
   }
