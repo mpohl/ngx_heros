@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {Title} from '@angular/platform-browser';
@@ -8,31 +8,47 @@ import {ToastrService} from 'ngx-toastr';
 import {HeroService} from '../_services/hero.service';
 import {Hero} from './hero';
 import {LocalizeRouterService} from 'localize-router';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss']
 })
-export class HeroesComponent implements OnInit {
-  busy = true;
-  heroes: Hero[];
-  selectedHero: Hero;
+export class HeroesComponent implements OnInit, OnDestroy {
+
+  private ngUnsubscribe: Subject<any> = new Subject();
+  public busy = true;
+  public heroes: Hero[];
+  public selectedHero: Hero;
 
   constructor(private heroService: HeroService,
               private router: Router,
               private translate: TranslateService,
               private titleService: Title,
               private toastr: ToastrService,
-              private localize: LocalizeRouterService) {
+              private localize: LocalizeRouterService) {}
 
+  ngOnInit(): void {
     /**
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_heroes.plattform_title').subscribe((res: string) => {
-      titleService.setTitle(res);
+    this.translate.get('COMPONENT_heroes.plattform_title')
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((res: string) => {
+      this.titleService.setTitle(res);
     });
+
+    this.getHeroes()
+      .then(
+        () => this.busy = false
+      );
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   getHeroes(): Promise<Hero[]> {
@@ -62,13 +78,6 @@ export class HeroesComponent implements OnInit {
           this.selectedHero = null;
         }
       });
-  }
-
-  ngOnInit(): void {
-    this.getHeroes()
-      .then(
-        () => this.busy = false
-      );
   }
 
   onSelect(hero: Hero): void {

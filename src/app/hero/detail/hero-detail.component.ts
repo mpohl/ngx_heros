@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/switchMap';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Location} from '@angular/common';
 import {Title} from '@angular/platform-browser';
@@ -9,6 +9,7 @@ import {ToastrService} from 'ngx-toastr';
 
 import {Hero} from '../hero';
 import {HeroService} from '../../_services/hero.service';
+import {Subject} from 'rxjs/Subject';
 
 
 @Component({
@@ -16,9 +17,10 @@ import {HeroService} from '../../_services/hero.service';
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.scss']
 })
-export class HeroDetailComponent implements OnInit {
-  hero: Hero;
-  busy = true;
+export class HeroDetailComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe: Subject<any> = new Subject();
+  public hero: Hero;
+  public busy = true;
 
   constructor(private heroService: HeroService,
               private route: ActivatedRoute,
@@ -26,16 +28,19 @@ export class HeroDetailComponent implements OnInit {
               private titleService: Title,
               private translate: TranslateService,
               private toastr: ToastrService) {
+  }
+
+  ngOnInit(): void {
     /**
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_detail.plattform_title').subscribe((res: string) => {
-      titleService.setTitle(res);
+    this.translate.get('COMPONENT_detail.plattform_title')
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((res: string) => {
+      this.titleService.setTitle(res);
     });
-  }
 
-  ngOnInit(): void {
     this.route.paramMap
       .switchMap((params: ParamMap) => this.heroService.getHero(+params.get('id')))
       .subscribe(
@@ -49,6 +54,11 @@ export class HeroDetailComponent implements OnInit {
           this.busy = false;
         }
       );
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   save(): void {

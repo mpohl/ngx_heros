@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {DOCUMENT, Meta, Title} from '@angular/platform-browser';
 import {AuthenticationService} from './_services/authentication.service';
@@ -8,13 +8,15 @@ import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
 import {Keepalive} from '@ng-idle/keepalive';
 import {environment} from '../environments/environment';
 import {LocalizeRouterService} from 'localize-router';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe: Subject<any> = new Subject();
   public title = 'Tour of Heroes';
   public isCollapsed = true;
   public activeLang = '';
@@ -54,7 +56,9 @@ export class AppComponent implements OnInit{
      * set html lang attribute
      * set active Language
      */
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    this.translate.onLangChange
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((event: LangChangeEvent) => {
       this.activeLang = this._document.documentElement.lang = event.lang;
     });
 
@@ -62,7 +66,9 @@ export class AppComponent implements OnInit{
      * set browser title
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_app.platform_title').subscribe((res: string) => {
+    this.translate.get('COMPONENT_app.platform_title')
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
 
@@ -77,6 +83,7 @@ export class AppComponent implements OnInit{
      */
     this.authenticationService
       .authChanged
+      .takeUntil(this.ngUnsubscribe)
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
         if (this.isAuthenticated) {
@@ -96,7 +103,9 @@ export class AppComponent implements OnInit{
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-    this.idle.onTimeout.subscribe(() => {
+    this.idle.onTimeout
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(() => {
       const translatedPath: any = this.localize.translateRoute('/login');
       this.router.navigate([translatedPath]);
     });
@@ -115,12 +124,19 @@ export class AppComponent implements OnInit{
      * set browser descr
      * this.translate is needed to extract with ngx-translate-extract
      */
-    this.translate.get('COMPONENT_app.platform_description').subscribe((res: string) => {
+    this.translate.get('COMPONENT_app.platform_description')
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((res: string) => {
       this.metaService.addTag({
         name: 'description',
         content: res
       });
     });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   resetIdle() {

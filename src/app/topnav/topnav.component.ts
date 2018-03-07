@@ -1,17 +1,20 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {LocalizeRouterService} from 'localize-router';
 import {DOCUMENT} from '@angular/platform-browser';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from '../_services/authentication.service';
 import {Idle} from '@ng-idle/core';
 import {Router} from '@angular/router';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-topnav',
   templateUrl: './topnav.component.html',
   styleUrls: ['./topnav.component.scss']
 })
-export class TopnavComponent implements OnInit {
+export class TopnavComponent implements OnInit, OnDestroy {
+
+  private ngUnsubscribe: Subject<any> = new Subject();
 
   public activeLang = '';
   public isAuthenticated = false;
@@ -38,7 +41,9 @@ export class TopnavComponent implements OnInit {
      * event onLangChanged
      * set active Language
      */
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    this.translate.onLangChange
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((event: LangChangeEvent) => {
       this.activeLang  = event.lang;
     });
 
@@ -52,18 +57,28 @@ export class TopnavComponent implements OnInit {
      */
     this.authenticationService
       .authChanged
+      .takeUntil(this.ngUnsubscribe)
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
         this.idleCountdown = 0;
       });
 
-    this.idle.onIdleEnd.subscribe(() => {
+    this.idle.onIdleEnd
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(() => {
       this.idleCountdown = 0;
     });
 
-    this.idle.onTimeoutWarning.subscribe((countdown) => {
+    this.idle.onTimeoutWarning
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((countdown) => {
       this.idleCountdown = countdown;
     });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   logout() {
