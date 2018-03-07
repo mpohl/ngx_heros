@@ -7,7 +7,9 @@
   "COMPONENT_topnav": {
     "language":"Language",
     "lang_abr_de":"Deutsch",
-    "lang_abr_en":"English"
+    "lang_abr_en":"English",
+    "login":"Login",
+    "logout":"Logout"
   },
 	"COMPONENT_dashboard": {
 		"plattform_title": "Dashboard",
