@@ -4,6 +4,10 @@
 // ngx toastr
 @import "~ngx-toastr/toastr";
 
+//
+// forms
+//
+
 // general bootstrap form mappings
 input{
   &.ng-touched {
@@ -21,40 +25,42 @@ input{
   }
 }
 
+//
 // vertical spacing
+//
 .nav-top-wrapper,h1,h2,section{
+  display: block;
   @extend .mb-4;
 }
 
+//
 // navigation
+//
 .nav-top-wrapper{
   @extend .navbar;
   @extend .navbar-expand-sm;
-  @extend .navbar-dark;
-  @extend .bg-dark;
+  @extend .navbar-light;
+  @extend .bg-light;
+}
+.nav-top-main-wrapper, .nav-top-lang-wrapper, .nav-top-logout-wrapper{
+  align-self: flex-start;
 }
 .nav-top{
   @extend .container;
 }
-.nav-top-main-wrapper{
-  //@extend .collapse;
-  //@extend .navbar-collapse;
-}
 .nav-top-main{
   @extend .mr-auto;
-}
-
-.nav-top-main, .nav-top-lang, .nav-top-logout{
-  @extend .navbar-nav;
-  li{
-    @extend .nav-item;
-    a{
-      @extend .nav-link;
-    }
+  .nav-item:first-child a{
+    padding-left: 0;
   }
 }
+.nav-top-lang-wrapper{
+  @extend .ml-sm-auto;
+}
 
-
+//
+// own components
+//
 .heroes{
   @extend .list-group;
   .hero{
