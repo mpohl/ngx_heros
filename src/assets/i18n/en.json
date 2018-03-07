@@ -4,6 +4,11 @@
 		"platform_title": "my sassy app",
     "idleCountdownHint": "in {{count}} seconds!"
 	},
+  "COMPONENT_topnav": {
+    "language":"Language",
+    "lang_abr_de":"Deutsch",
+    "lang_abr_en":"English"
+  },
 	"COMPONENT_dashboard": {
 		"plattform_title": "Dashboard",
 		"title" : "Dashboard",
