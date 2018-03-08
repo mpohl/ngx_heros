@@ -35,18 +35,19 @@ export class TopnavComponent implements OnInit, OnDestroy {
      * get active lang from LocalizeRouterService
      * set html lang attribute
      */
-    this.activeLang = this._document.documentElement.lang = this.localize.parser.currentLang;
+    this.activeLang =  this.localize.parser.currentLang;
 
     /**
      * event onLangChanged
      * set active Language
      */
+    /*
     this.translate.onLangChange
       .takeUntil(this.ngUnsubscribe)
       .subscribe((event: LangChangeEvent) => {
       this.activeLang  = event.lang;
     });
-
+    */
     /**
      * status of auth of current user
      * @type {boolean}

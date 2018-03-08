@@ -5,14 +5,14 @@
         <li class="nav-item"
             routerLinkActive="active">
           <a class="nav-link"
-             [routerLink]="'/dashboard' | localize">
+             [routerLink]="'/dashboard' | localize" [innerHTML]="'COMPONENT_dashboard.name' | translate">
             Dashboard
           </a>
         </li>
         <li class="nav-item"
             routerLinkActive="active">
           <a class="nav-link"
-             [routerLink]="'/heroes' | localize">
+             [routerLink]="'/heroes' | localize" [innerHTML]="'COMPONENT_heroes.name' | translate">
             Heroes
           </a>
         </li>

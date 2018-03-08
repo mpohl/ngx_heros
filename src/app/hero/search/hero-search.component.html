@@ -1,4 +1,4 @@
-<h2>Hero Search</h2>
+<h2 [innerHTML]="'COMPONENT_hero-search.title' | translate">Hero Search</h2>
 
 <input #searchBox id="searchTerm" (keyup)="search(searchBox.value)" placeholder="Search fo a hero" />
 

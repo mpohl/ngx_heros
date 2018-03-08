@@ -10,16 +10,49 @@ msgstr ""
 msgid "COMPONENT_app.platform_description"
 msgstr ""
 
+msgid "COMPONENT_dashboard.name"
+msgstr ""
+
 msgid "COMPONENT_dashboard.title"
 msgstr ""
 
 msgid "COMPONENT_dashboard.topHeroes"
 msgstr ""
 
+msgid "COMPONENT_hero-search.title"
+msgstr ""
+
+msgid "COMPONENT_heroes.name"
+msgstr ""
+
 msgid "COMPONENT_heroes.title"
 msgstr ""
 
+msgid "COMPONENT_login.error.password_minlength"
+msgstr ""
+
+msgid "COMPONENT_login.error.password_required"
+msgstr ""
+
+msgid "COMPONENT_login.error.username_minlength"
+msgstr ""
+
+msgid "COMPONENT_login.error.username_required"
+msgstr ""
+
+msgid "COMPONENT_login.login"
+msgstr ""
+
 msgid "COMPONENT_login.loginError"
+msgstr ""
+
+msgid "COMPONENT_login.name"
+msgstr ""
+
+msgid "COMPONENT_login.password"
+msgstr ""
+
+msgid "COMPONENT_login.username"
 msgstr ""
 
 msgid "COMPONENT_submodule.name"
