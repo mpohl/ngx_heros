@@ -1,36 +1,36 @@
 {
 	"COMPONENT_app": {
-		"platform_description": "an angular2 app",
 		"idleCountdownHint": "in {{count}} seconds!",
+		"platform_description": "an angular2 app",
 		"platform_title": "my sassy app"
 	},
 	"COMPONENT_dashboard": {
+		"plattform_title": "Dashboard",
 		"title": "Dashboard",
-		"topHeroes": "Top 4 heroes",
-		"plattform_title": "Dashboard"
+		"topHeroes": "Top 4 heroes"
+	},
+	"COMPONENT_detail": {
+		"plattform_title": "My Hero"
 	},
 	"COMPONENT_heroes": {
-		"title": "My heroes",
-		"plattform_title": "My heroes"
+		"plattform_title": "My heroes",
+		"title": "My heroes"
 	},
 	"COMPONENT_login": {
 		"loginError": "Username or password wrong.",
 		"plattform_title": "Login"
 	},
 	"COMPONENT_submodule": {
-		"title": "Submodule works!",
 		"name": "Submodule",
-		"plattform_title": "Submodule"
+		"plattform_title": "Submodule",
+		"title": "Submodule works!"
 	},
 	"COMPONENT_topnav": {
 		"lang_abr_de": "Deutsch",
 		"lang_abr_en": "English",
+		"language": "Language",
 		"login": "Login",
-		"logout": "Logout",
-		"language": "Language"
-	},
-	"COMPONENT_detail": {
-		"plattform_title": "My Hero"
+		"logout": "Logout"
 	},
 	"ROUTER_heroes": "heroes",
 	"ROUTER_submodule": "submodule"
