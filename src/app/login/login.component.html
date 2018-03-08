@@ -11,7 +11,7 @@
          [ngClass]="{ 'has-error': username.invalid && (username.dirty || username.touched) }">
 
       <label for="username">Username</label>
-      <input id="username" required minlength="4" formControlName="username">
+      <input id="username" formControlName="username">
 
       <div *ngIf="username.invalid && (username.dirty || username.touched)">
         <small *ngIf="username['errors'].required">
