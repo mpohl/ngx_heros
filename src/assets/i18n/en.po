@@ -1,42 +1,41 @@
 msgid ""
 msgstr ""
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 
-#:
-msgctxt "\"app\""
-msgid "platform_description"
-msgstr "an angular2 app"
+msgid "COMPONENT_app.idleCountdownHint"
+msgstr ""
 
-#:
-msgctxt "\"app\""
-msgid "platform_title"
-msgstr "my sassy app"
+msgid "COMPONENT_app.platform_description"
+msgstr ""
 
-#:
-msgctxt "\"dashboard\""
-msgid "plattform_title"
-msgstr "Dashboard"
+msgid "COMPONENT_dashboard.title"
+msgstr ""
 
-#:
-msgctxt "\"dashboard\""
-msgid "title"
-msgstr "Top heroes"
+msgid "COMPONENT_dashboard.topHeroes"
+msgstr ""
 
-#:
-msgctxt "\"detail\""
-msgid "plattform_title"
-msgstr "My Hero"
+msgid "COMPONENT_heroes.title"
+msgstr ""
 
-#:
-msgctxt "\"heroes\""
-msgid "plattform_title"
-msgstr "My heroes"
+msgid "COMPONENT_login.loginError"
+msgstr ""
 
-#:
-msgctxt "\"heroes\""
-msgid "title"
-msgstr "My heroes"
+msgid "COMPONENT_submodule.name"
+msgstr ""
 
+msgid "COMPONENT_submodule.title"
+msgstr ""
+
+msgid "COMPONENT_topnav.lang_abr_de"
+msgstr ""
+
+msgid "COMPONENT_topnav.lang_abr_en"
+msgstr ""
+
+msgid "COMPONENT_topnav.login"
+msgstr ""
+
+msgid "COMPONENT_topnav.logout"
+msgstr ""
