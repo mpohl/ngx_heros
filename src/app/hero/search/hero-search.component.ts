@@ -23,8 +23,8 @@ import {LocalizeRouterService} from 'localize-router';
   providers: [HeroSearchService]
 })
 export class HeroSearchComponent implements OnInit {
-  private heroes: Observable<Hero[]>;
-  private searchTerms = new Subject<string>();
+  public heroes: Observable<Hero[]>;
+  public searchTerms = new Subject<string>();
 
   constructor(
     private heroSearchService: HeroSearchService

@@ -1,6 +1,6 @@
 ﻿<div class="col-md-6 col-md-offset-3">
 
-  <h2>Login</h2>
+  <h2 [innerHTML]="'COMPONENT_login.name' | translate">Login</h2>
 
   <form name="form"
         novalidate
@@ -10,14 +10,14 @@
     <div class="form-group"
          [ngClass]="{ 'has-error': username.invalid && (username.dirty || username.touched) }">
 
-      <label for="username">Username</label>
+      <label for="username" [innerHTML]="'COMPONENT_login.username' | translate">Username</label>
       <input id="username" formControlName="username">
 
       <div *ngIf="username.invalid && (username.dirty || username.touched)">
-        <small *ngIf="username['errors'].required">
+        <small *ngIf="username['errors'].required" [innerHTML]="'COMPONENT_login.error.username_required' | translate">
           Username is required.
         </small>
-        <small *ngIf="username['errors'].minlength">
+        <small *ngIf="username['errors'].minlength" [innerHTML]="'COMPONENT_login.error.username_minlength' | translate">
           Username must be at least 4 characters long.
         </small>
       </div>
@@ -25,14 +25,11 @@
 
     <div class="form-group"
          [ngClass]="{ 'has-error': password.invalid && (password.dirty || password.touched) }">
-      <label for="password">Password</label>
+      <label for="password" [innerHTML]="'COMPONENT_login.password' | translate">Password</label>
       <input id="password" type="password" formControlName="password">
       <div *ngIf="password.invalid && (password.dirty || password.touched)">
-        <small *ngIf="password['errors'].required">
+        <small *ngIf="password['errors'].required" [innerHTML]="'COMPONENT_login.error.password_required' | translate">
           Password is required.
-        </small>
-        <small *ngIf="password['errors'].minlength">
-          Password must be at least 4 characters long.
         </small>
       </div>
     </div>
@@ -41,7 +38,8 @@
 
     <div class="form-group">
       <button type="submit" class="btn btn-primary"
-              [disabled]="loading || !loginForm.valid">
+              [disabled]="loading || !loginForm.valid"
+              [innerHTML]="'COMPONENT_login.login' | translate">
         Login
       </button>
       <img *ngIf="loading"

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LocalizeRouterModule, LocalizeRouterSettings, LocalizeParser } from 'localize-router';
+import { LocalizeRouterModule, LocalizeRouterSettings, LocalizeParser, ManualParserLoader } from 'localize-router';
 import { LocalizeRouterHttpLoader } from 'localize-router-http-loader';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
@@ -12,9 +12,11 @@ import {HeroesComponent} from './hero/heroes.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './_guards/auth.guard';
 
+/*
 export function HttpLoaderFactory(translate: TranslateService, location: Location, settings: LocalizeRouterSettings, http: HttpClient) {
   return new LocalizeRouterHttpLoader(translate, location, settings, http);
 }
+*/
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -32,7 +34,8 @@ const routes: Routes = [
     LocalizeRouterModule.forRoot(routes, {
       parser: {
         provide: LocalizeParser,
-        useFactory: HttpLoaderFactory,
+        // useFactory: HttpLoaderFactory,
+        useFactory: (translate, location, settings) => new ManualParserLoader(translate, location, settings, ['en', 'de'], 'ROUTER_'),
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
       }
     })

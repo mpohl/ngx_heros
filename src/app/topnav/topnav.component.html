@@ -3,12 +3,12 @@
     <div class="nav-top-main-wrapper">
       <ul class="nav-top-main">
         <li routerLinkActive="active">
-          <a [routerLink]="'/dashboard' | localize">
+          <a [routerLink]="'/dashboard' | localize" [innerHTML]="'COMPONENT_dashboard.name' | translate">
             Dashboard
           </a>
         </li>
         <li routerLinkActive="active">
-          <a [routerLink]="'/heroes' | localize">
+          <a [routerLink]="'/heroes' | localize" [innerHTML]="'COMPONENT_heroes.name' | translate">
             Heroes
           </a>
         </li>

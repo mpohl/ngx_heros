@@ -5,6 +5,7 @@
 		"platform_title": "Meine sassy app"
 	},
 	"COMPONENT_dashboard": {
+		"name": "Dashboard",
 		"plattform_title": "Dashboard",
 		"title": "Dashboard",
 		"topHeroes": "Top 4 Helden"
@@ -12,13 +13,26 @@
 	"COMPONENT_detail": {
 		"plattform_title": "Mein Held"
 	},
+	"COMPONENT_hero-search": {
+		"title": "Helden suchen:"
+	},
 	"COMPONENT_heroes": {
+		"name": "Helden",
 		"plattform_title": "Meine Helden",
 		"title": "Meine Helden"
 	},
 	"COMPONENT_login": {
+		"error": {
+			"password_required": "Passwort wird benötigt.",
+			"username_minlength": "Der Benutzernmae muß mindestens 4 Zeichen lang sein.",
+			"username_required": "Benutzername wird benötigt."
+		},
+		"login": "Anmeldung",
 		"loginError": "Benutzername oder Passwort falsch.",
-		"plattform_title": "Anmelden"
+		"name": "Anmeldung",
+		"password": "Passwort",
+		"plattform_title": "Anmelden",
+		"username": "Benutzername"
 	},
 	"COMPONENT_submodule": {
 		"name": "Untermodul",

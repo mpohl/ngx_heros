@@ -33,24 +33,24 @@ export class AppComponent implements OnInit, OnDestroy {
               private router: Router,
               private idle: Idle,
               private keepalive: Keepalive,
-              private localize: LocalizeRouterService) {}
-
-  ngOnInit() {
+              private localize: LocalizeRouterService) {
     /**
      * Set default lang
      * this language will be used as a fallback when a translation isn't found in the current language
      */
-    this.translate.setDefaultLang(this.localize.parser.currentLang);
+    // this.translate.setDefaultLang('en');
     /**
      * the lang to use, if the lang isn't available, it will use the current loader to get them
      */
-    // translate.use('de');
-
+    // this.translate.use('de');
     /**
      * get active lang from LocalizeRouterService
      * set html lang attribute
      */
     this.activeLang = this._document.documentElement.lang = this.localize.parser.currentLang;
+  }
+
+  ngOnInit() {
     /**
      * event onLangChanged
      * set html lang attribute
