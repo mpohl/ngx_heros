@@ -67,8 +67,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     HttpClientModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
-      useDefaultLang: environment.envName === 'prod' ? true : false,
-      // useDefaultLang: false,
+      // useDefaultLang: environment.envName === 'prod' ? true : false,
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
