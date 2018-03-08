@@ -1,37 +1,37 @@
 {
 	"COMPONENT_app": {
+		"idleCountdownHint": "in {{count}} Sekunden!",
 		"platform_description": "Eine angular2 app",
-		"platform_title": "Meine sassy app",
-    "idleCountdownHint": "in {{count}} Sekunden!"
+		"platform_title": "Meine sassy app"
 	},
-  "COMPONENT_topnav": {
-    "language":"Sprache",
-    "lang_abr_de":"Deutsch",
-    "lang_abr_en":"English",
-    "login":"Anmelden",
-    "logout":"Abmelden"
-  },
 	"COMPONENT_dashboard": {
 		"plattform_title": "Dashboard",
-    "title" : "Dashboard",
-    "topHeroes": "Top 4 Helden"
+		"title": "Dashboard",
+		"topHeroes": "Top 4 Helden"
 	},
 	"COMPONENT_detail": {
 		"plattform_title": "Mein Held"
 	},
-  "ROUTER_heroes" : "helden",
 	"COMPONENT_heroes": {
 		"plattform_title": "Meine Helden",
 		"title": "Meine Helden"
 	},
-  "COMPONENT_login" : {
-    "plattform_title": "Anmelden",
-    "loginError" : "Benutzername oder Passwort falsch."
-  },
-  "ROUTER_submodule" : "untermodul",
-  "COMPONENT_submodule" : {
-    "plattform_title": "Untermodul",
-    "name" : "Untermodul",
-    "title" : "Untermodul funktioniert!"
-  }
+	"COMPONENT_login": {
+		"loginError": "Benutzername oder Passwort falsch.",
+		"plattform_title": "Anmelden"
+	},
+	"COMPONENT_submodule": {
+		"name": "Untermodul",
+		"plattform_title": "Untermodul",
+		"title": "Untermodul funktioniert!"
+	},
+	"COMPONENT_topnav": {
+		"lang_abr_de": "Deutsch",
+		"lang_abr_en": "English",
+		"language": "Sprache",
+		"login": "Anmelden",
+		"logout": "Abmelden"
+	},
+	"ROUTER_heroes": "helden",
+	"ROUTER_submodule": "untermodul"
 }
