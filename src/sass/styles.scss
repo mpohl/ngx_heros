@@ -61,6 +61,14 @@ input{
 //
 // own components
 //
+
+app-userinfo{
+  .user-info{
+    @extend .alert;
+    @extend .alert-info;
+  }
+}
+
 .heroes{
   @extend .list-group;
   .hero{
