@@ -44,13 +44,11 @@ export class TopnavComponent implements OnInit, OnDestroy {
      * event onLangChanged
      * set active Language
      */
-    /*
     this.translate.onLangChange
       .takeUntil(this.ngUnsubscribe)
       .subscribe((event: LangChangeEvent) => {
       this.activeLang  = event.lang;
     });
-    */
     /**
      * status of auth of current user
      * @type {boolean}
