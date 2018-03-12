@@ -6,6 +6,8 @@ import {AuthenticationService} from '../_services/authentication.service';
 import {Idle} from '@ng-idle/core';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs/Subject';
+import {UserinfoMessage} from '../userinfo/userinfo.component';
+import {MessagingService} from '../_services/messaging.service';
 
 @Component({
   selector: 'app-topnav',
@@ -27,7 +29,8 @@ export class TopnavComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private authenticationService: AuthenticationService,
     private idle: Idle,
-    private router: Router
+    private router: Router,
+    private Messaging: MessagingService
   ) {}
 
   ngOnInit() {
@@ -84,7 +87,9 @@ export class TopnavComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authenticationService.logout();
-    this.router.navigate([this.localize.translateRoute('/dashboad')]);
+    // send user info
+    this.router.navigate([this.localize.translateRoute('/dashboard')]);
+    this.Messaging.publish(new UserinfoMessage('USERINFO.logOut'));
   }
 
   /**
