@@ -50,6 +50,6 @@
 	"ROUTER_submodule": "submodule",
   "USERINFO":{
     "logOut":"Logout succesful",
-    "logIn":"Login succesful",
+    "logIn":"Login succesful"
   }
 }
