@@ -32,7 +32,8 @@ import {LocalizeRouterHttpLoader} from 'localize-router-http-loader';
 import {SubmoduleModule} from './submodule/submodule.module';
 import { TopnavComponent } from './topnav/topnav.component';
 import {BrowserTitleService} from './_services/browser-title.service';
-import {UserinfoComponent} from './userinfo/userinfo/userinfo.component';
+import {UserinfoComponent} from './userinfo/userinfo.component';
+import {MessagingService} from './_services/messaging.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -102,7 +103,8 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     AuthGuard,
     AuthenticationService,
     UserService,
-    BrowserTitleService
+    BrowserTitleService,
+    MessagingService
   ],
   bootstrap: [AppComponent]
 })

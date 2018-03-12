@@ -47,5 +47,9 @@
 		"logout": "Abmelden"
 	},
 	"ROUTER_heroes": "helden",
-	"ROUTER_submodule": "untermodul"
+	"ROUTER_submodule": "untermodul",
+  "USERINFO":{
+    "logOut":"Sie haben sich erfolgreich abgemeldet",
+    "logIn":"Sie haben sich erfolgreich angemeldet"
+  }
 }

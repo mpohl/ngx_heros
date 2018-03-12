@@ -47,5 +47,9 @@
 		"logout": "Logout"
 	},
 	"ROUTER_heroes": "heroes",
-	"ROUTER_submodule": "submodule"
+	"ROUTER_submodule": "submodule",
+  "USERINFO":{
+    "logOut":"Logout succesful",
+    "logIn":"Login succesful",
+  }
 }

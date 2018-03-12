@@ -7,6 +7,8 @@ import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {BrowserTitleService} from '../_services/browser-title.service';
+import {UserinfoMessage} from '../userinfo/userinfo.component';
+import {MessagingService} from '../_services/messaging.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +33,8 @@ export class LoginComponent implements OnInit, OnDestroy {
               private localize: LocalizeRouterService,
               private titleService: BrowserTitleService,
               private translate: TranslateService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private Messaging: MessagingService) {
   }
 
   ngOnInit() {
@@ -91,6 +94,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         if (result === true) {
           this.router.navigate([this.nextUrl]);
+          this.Messaging.publish(new UserinfoMessage('USERINFO.logIn'));
         } else {
           this.loginError = true;
           this.loading = false;
