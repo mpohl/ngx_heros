@@ -17,14 +17,14 @@
 		"title": "Helden suchen:"
 	},
 	"COMPONENT_heroes": {
+		"add": "Hinzufügen",
+		"error": {
+			"name_required": "Der Held braucht einen Namen!"
+		},
 		"name": "Helden",
+		"placeholder-name": "Heldenname",
 		"plattform_title": "Meine Helden",
-		"title": "Meine Helden",
-    "placeholder-name":"Name",
-    "add":"Hinzufügen",
-    "error":{
-      "name_required":"Der Held braucht einen Namen!"
-    }
+		"title": "Meine Helden"
 	},
 	"COMPONENT_login": {
 		"error": {
@@ -53,8 +53,8 @@
 	},
 	"ROUTER_heroes": "helden",
 	"ROUTER_submodule": "untermodul",
-  "USERINFO":{
-    "logOut":"Sie haben sich erfolgreich abgemeldet",
-    "logIn":"Sie haben sich erfolgreich angemeldet"
-  }
+	"USERINFO": {
+		"logIn": "Sie haben sich erfolgreich angemeldet",
+		"logOut": "Sie haben sich erfolgreich abgemeldet"
+	}
 }
