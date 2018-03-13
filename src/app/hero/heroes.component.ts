@@ -9,6 +9,7 @@ import {Hero} from './hero';
 import {LocalizeRouterService} from 'localize-router';
 import {Subject} from 'rxjs/Subject';
 import {BrowserTitleService} from '../_services/browser-title.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-heroes',
@@ -19,16 +20,19 @@ export class HeroesComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe: Subject<any> = new Subject();
   public busy = true;
+  public formBusy = false;
   public heroes: Hero[];
   public selectedHero: Hero;
   private browserTitleKey = 'COMPONENT_heroes.plattform_title';
+  public heroForm: FormGroup;
 
   constructor(private heroService: HeroService,
               private router: Router,
               private translate: TranslateService,
               private titleService: BrowserTitleService,
               private toastr: ToastrService,
-              private localize: LocalizeRouterService) {
+              private localize: LocalizeRouterService,
+              private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -42,7 +46,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
       .subscribe((event: LangChangeEvent) => {
         this.titleService.set(this.browserTitleKey);
     });
-
+    this.createForm();
     this.getHeroes()
       .then(
         () => this.busy = false
@@ -58,18 +62,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
     return this.heroService
       .getHeroes()
       .then(heroes => this.heroes = heroes);
-  }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-    this.heroService.create(name)
-      .then(hero => {
-        this.heroes.push(hero);
-        this.selectedHero = null;
-      });
   }
 
   delete(hero: Hero): void {
@@ -90,5 +82,36 @@ export class HeroesComponent implements OnInit, OnDestroy {
   gotoDetail(): void {
     const translatedPath: any = this.localize.translateRoute('/detail');
     this.router.navigate([translatedPath, this.selectedHero.id]);
+  }
+
+  get name() {
+    return this.heroForm.get('name');
+  }
+
+  createForm() {
+    this.heroForm = this.fb.group({
+      name : new FormControl(
+        '',
+        {
+          validators : [ Validators.required],
+          updateOn : 'change'
+        }
+      )
+    });
+  }
+  onSubmit(): void {
+    this.formBusy = true;
+    const name: string = this.heroForm.value.name.trim();
+    if (!name) {
+      this.formBusy = false;
+      return;
+    }
+    this.heroService.create(name)
+      .then(hero => {
+        this.heroForm.reset();
+        this.formBusy = false;
+        this.heroes.push(hero);
+        this.selectedHero = null;
+      });
   }
 }

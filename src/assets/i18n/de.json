@@ -19,7 +19,12 @@
 	"COMPONENT_heroes": {
 		"name": "Helden",
 		"plattform_title": "Meine Helden",
-		"title": "Meine Helden"
+		"title": "Meine Helden",
+    "placeholder-name":"Name",
+    "add":"Hinzufügen",
+    "error":{
+      "name_required":"Der Held braucht einen Namen!"
+    }
 	},
 	"COMPONENT_login": {
 		"error": {

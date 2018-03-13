@@ -1,10 +1,29 @@
 <h2 [innerHTML]="'COMPONENT_heroes.title' | translate">My Heroes</h2>
-  <div>
-  <label>Hero name:</label> <input #heroName />
-  <button (click)="add(heroName.value); heroName.value=''">
-    Add
-  </button>
-</div>
+<form name="form"
+      novalidate
+      [formGroup]="heroForm"
+      (ngSubmit)="onSubmit()">
+
+  <div class="form-group"
+       [ngClass]="{ 'has-error': name.invalid && (name.dirty || name.touched) }">
+
+    <input id="name" formControlName="name" placeholder="{{'COMPONENT_heroes.placeholder-name' | translate}}">
+
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+      <small *ngIf="name['errors'].required" [innerHTML]="'COMPONENT_heroes.error.name_required' | translate">
+        Name is required.
+      </small>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary"
+            [disabled]="!heroForm.valid || formBusy"
+            [innerHTML]="'COMPONENT_heroes.add' | translate">
+      add
+    </button>
+    <img *ngIf="formBusy" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+  </div>
+</form>
 
 <ngb-alert *ngIf="busy" [dismissible]="false" type="info">
   busy...
@@ -20,6 +39,7 @@
       (click)="delete(hero); $event.stopPropagation()">x</button>
   </li>
 </ul>
+
 <div *ngIf="selectedHero">
   <h2>
     {{selectedHero.name | uppercase}} is my hero
