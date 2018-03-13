@@ -93,25 +93,30 @@ export class HeroesComponent implements OnInit, OnDestroy {
       name : new FormControl(
         '',
         {
-          validators : [ Validators.required],
-          updateOn : 'change'
+          validators : [Validators.required],
+          updateOn : 'submit'
         }
       )
     });
   }
   onSubmit(): void {
-    this.formBusy = true;
-    const name: string = this.heroForm.value.name.trim();
-    if (!name) {
-      this.formBusy = false;
-      return;
-    }
-    this.heroService.create(name)
-      .then(hero => {
-        this.heroForm.reset();
-        this.formBusy = false;
-        this.heroes.push(hero);
-        this.selectedHero = null;
+    if (!this.heroForm.valid) {
+      // validate controls
+      Object.keys(this.heroForm.controls).forEach(field => {
+        const control = this.heroForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+        return;
       });
+    } else {
+      this.formBusy = true;
+      const name: string = this.heroForm.value.name.trim();
+      this.heroService.create(name)
+        .then(hero => {
+          this.heroForm.reset();
+          this.formBusy = false;
+          this.heroes.push(hero);
+          this.selectedHero = null;
+        });
+    }
   }
 }
