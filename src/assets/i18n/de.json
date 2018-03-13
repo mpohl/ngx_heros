@@ -20,7 +20,7 @@
 		"name": "Helden",
 		"plattform_title": "Meine Helden",
 		"title": "Meine Helden",
-    "placeholder-name":"Name",
+    "placeholder-name":"Heldenname",
     "add":"Hinzufügen",
     "error":{
       "name_required":"Der Held braucht einen Namen!"

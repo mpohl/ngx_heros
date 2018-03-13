@@ -19,7 +19,12 @@
 	"COMPONENT_heroes": {
 		"name": "Heroes",
 		"plattform_title": "My heroes",
-		"title": "My heroes"
+		"title": "My heroes",
+    "placeholder-name":"Heroname",
+    "add":"Add",
+    "error":{
+      "name_required":"The hero needs a name!"
+    }
 	},
 	"COMPONENT_login": {
 		"error": {
