@@ -17,14 +17,14 @@
 		"title": "Search hero:"
 	},
 	"COMPONENT_heroes": {
+		"add": "Add",
+		"error": {
+			"name_required": "The hero needs a name!"
+		},
 		"name": "Heroes",
+		"placeholder-name": "Heroname",
 		"plattform_title": "My heroes",
-		"title": "My heroes",
-    "placeholder-name":"Heroname",
-    "add":"Add",
-    "error":{
-      "name_required":"The hero needs a name!"
-    }
+		"title": "My heroes"
 	},
 	"COMPONENT_login": {
 		"error": {
@@ -53,8 +53,8 @@
 	},
 	"ROUTER_heroes": "heroes",
 	"ROUTER_submodule": "submodule",
-  "USERINFO":{
-    "logOut":"Logout succesful",
-    "logIn":"Login succesful"
-  }
+	"USERINFO": {
+		"logIn": "Login succesful",
+		"logOut": "Logout succesful"
+	}
 }

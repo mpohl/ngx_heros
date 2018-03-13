@@ -22,7 +22,16 @@ msgstr ""
 msgid "COMPONENT_hero-search.title"
 msgstr ""
 
+msgid "COMPONENT_heroes.add"
+msgstr ""
+
+msgid "COMPONENT_heroes.error.name_required"
+msgstr ""
+
 msgid "COMPONENT_heroes.name"
+msgstr ""
+
+msgid "COMPONENT_heroes.placeholder-name"
 msgstr ""
 
 msgid "COMPONENT_heroes.title"
