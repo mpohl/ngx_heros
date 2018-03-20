@@ -25,6 +25,7 @@ import {LocalizeRouterService} from 'localize-router';
 export class HeroSearchComponent implements OnInit {
   public heroes: Observable<Hero[]>;
   public searchTerms = new Subject<string>();
+  public searching = false;
 
   constructor(
     private heroSearchService: HeroSearchService
@@ -32,6 +33,7 @@ export class HeroSearchComponent implements OnInit {
 
   // Push a search term into the observable stream.
   search(term: string): void {
+    this.searching = true;
     this.searchTerms.next(term);
   }
 
@@ -42,11 +44,15 @@ export class HeroSearchComponent implements OnInit {
       .switchMap(term => term   // switch to new observable each time the term changes
         // return the http search observable
         ? this.heroSearchService.search(term)
+          .finally(() => this.searching = false)
         // or the observable of empty heroes if there was no search term
-        : Observable.of<Hero[]>([]))
+        : Observable.of<Hero[]>([])
+          .finally(() => this.searching = false)
+      )
       .catch(error => {
         // TODO: add real error handling
         console.log(error);
+        this.searching = false;
         return Observable.of<Hero[]>([]);
       });
   }
