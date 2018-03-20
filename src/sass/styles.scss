@@ -69,6 +69,12 @@ app-userinfo{
   }
 }
 
+app-hero-search{
+  .heroes{
+    @extend .mt-2;
+  }
+}
+
 .heroes{
   @extend .list-group;
   .hero{
