@@ -80,8 +80,21 @@ app-hero-search{
   .hero{
     @extend .list-group-item;
     @extend .list-group-item-action;
+    @include make-row();
+    margin-left: 0;
+    margin-right: 0;
     .name{
-      display: block;
+      @include make-col-ready();
+      @include make-col(8);
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .button-wrapper{
+      @include make-col-ready();
+      @include make-col(4);
+      padding-right: 0;
+      padding-left: 0;
+      @extend .text-right;
     }
     .delete{
       @extend .btn;
