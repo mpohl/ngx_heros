@@ -75,15 +75,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
       });
   }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
-
-  gotoDetail(): void {
-    const translatedPath: any = this.localize.translateRoute('/detail');
-    this.router.navigate([translatedPath, this.selectedHero.id]);
-  }
-
   get name() {
     return this.heroForm.get('name');
   }

@@ -33,21 +33,16 @@
   <li class="hero"
       *ngFor="let hero of heroes"
       [class.selected]="hero === selectedHero">
-    <a class="name" href="javascript:void(0)"
-       (click)="onSelect(hero)">
+    <a class="name"
+       [routerLink]="['/detail' | localize, hero.id]">
       {{hero.name}}
     </a>
     <span class="button-wrapper">
       <button class="delete"
-              (click)="delete(hero); $event.stopPropagation()">x
+              [innerHTML]="'COMPONENT_heroes.delete' | translate"
+              (click)="delete(hero); $event.stopPropagation()">
+        Delete
       </button>
     </span>
   </li>
 </ul>
-
-<div *ngIf="selectedHero">
-  <h2>
-    {{selectedHero.name | uppercase}} is my hero
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
-</div>
