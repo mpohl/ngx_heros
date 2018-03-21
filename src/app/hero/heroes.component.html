@@ -37,8 +37,11 @@
        (click)="onSelect(hero)">
       {{hero.name}}
     </a>
-    <button class="delete"
-      (click)="delete(hero); $event.stopPropagation()">x</button>
+    <span class="button-wrapper">
+      <button class="delete"
+              (click)="delete(hero); $event.stopPropagation()">x
+      </button>
+    </span>
   </li>
 </ul>
 
