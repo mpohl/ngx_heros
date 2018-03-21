@@ -18,6 +18,7 @@
 	},
 	"COMPONENT_heroes": {
 		"add": "Add",
+    "delete": "Delete",
 		"error": {
 			"name_required": "The hero needs a name!"
 		},
