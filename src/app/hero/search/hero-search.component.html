@@ -10,6 +10,8 @@
 <ul class="heroes">
   <li class="hero"
       *ngFor="let hero of heroes | async">
-    <a class="name" [routerLink]="['/detail' | localize, hero.id]">{{hero.name}}</a>
+    <div class="hero-content">
+      <a class="hero-name" [routerLink]="['/detail' | localize, hero.id]">{{hero.name}}</a>
+    </div>
   </li>
 </ul>

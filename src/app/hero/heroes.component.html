@@ -45,16 +45,18 @@
   <li class="hero"
       *ngFor="let hero of heroes"
       [class.selected]="hero === selectedHero">
-    <a class="name"
-       [routerLink]="['/detail' | localize, hero.id]">
-      {{hero.name}}
-    </a>
-    <span class="button-wrapper">
-      <button class="delete"
-              [innerHTML]="'COMPONENT_heroes.delete' | translate"
-              (click)="delete(hero); $event.stopPropagation()">
-        Delete
-      </button>
-    </span>
+    <div class="hero-content">
+      <a class="hero-name"
+         [routerLink]="['/detail' | localize, hero.id]">
+        {{hero.name}}
+      </a>
+      <span class="hero-buttons">
+        <button class="hero-button-delete"
+                [innerHTML]="'COMPONENT_heroes.delete' | translate"
+                (click)="delete(hero); $event.stopPropagation()">
+          Delete
+        </button>
+      </span>
+    </div>
   </li>
 </ul>
