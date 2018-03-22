@@ -8,9 +8,11 @@
   <h2 [innerHTML]="'COMPONENT_dashboard.topHeroes' | translate">Top Heroes</h2>
   <ul class="heroes">
     <li *ngFor="let hero of heroes" class="hero">
-      <a [routerLink]="['/detail' | localize, hero.id]" class="name">
-        {{hero.name}}
-      </a>
+      <div class="hero-content">
+        <a [routerLink]="['/detail' | localize, hero.id]" class="hero-name">
+          {{hero.name}}
+        </a>
+      </div>
     </li>
   </ul>
 </section>
