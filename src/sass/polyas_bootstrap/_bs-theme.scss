@@ -1,0 +1,159 @@
+@import
+  // minimal requirements
+'../../../node_modules/bootstrap/scss/functions',
+'../../../node_modules/bootstrap/scss/variables',
+'~sass/polyas_bootstrap/bs-variables',// overide bs vars
+'../../../node_modules/bootstrap/scss/mixins',
+   // components
+'../../../node_modules/bootstrap/scss/print',
+'../../../node_modules/bootstrap/scss/reboot',
+'../../../node_modules/bootstrap/scss/type',
+'../../../node_modules/bootstrap/scss/images',
+'../../../node_modules/bootstrap/scss/code',
+'../../../node_modules/bootstrap/scss/grid',
+'../../../node_modules/bootstrap/scss/tables',
+'../../../node_modules/bootstrap/scss/forms',
+'../../../node_modules/bootstrap/scss/buttons',
+'../../../node_modules/bootstrap/scss/transitions',
+'../../../node_modules/bootstrap/scss/dropdown',
+'../../../node_modules/bootstrap/scss/button-group',
+'../../../node_modules/bootstrap/scss/input-group',
+'../../../node_modules/bootstrap/scss/custom-forms',
+'../../../node_modules/bootstrap/scss/nav',
+'../../../node_modules/bootstrap/scss/navbar',
+'../../../node_modules/bootstrap/scss/card',
+'../../../node_modules/bootstrap/scss/breadcrumb',
+'../../../node_modules/bootstrap/scss/pagination',
+'../../../node_modules/bootstrap/scss/badge',
+'../../../node_modules/bootstrap/scss/jumbotron',
+'../../../node_modules/bootstrap/scss/alert',
+'../../../node_modules/bootstrap/scss/progress',
+'../../../node_modules/bootstrap/scss/media',
+'../../../node_modules/bootstrap/scss/list-group',
+'../../../node_modules/bootstrap/scss/close',
+'../../../node_modules/bootstrap/scss/modal',
+'../../../node_modules/bootstrap/scss/tooltip',
+'../../../node_modules/bootstrap/scss/popover',
+'../../../node_modules/bootstrap/scss/carousel',
+'../../../node_modules/bootstrap/scss/utilities';
+
+/**
+ * debug grid
+ */
+
+.row {
+  margin-bottom: 1rem;
+}
+.row .row {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+[class*="col-"], .col {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid rgba(86,61,124,.2);
+}
+
+//
+// forms
+//
+
+// general bootstrap form mappings
+input{
+  &.ng-touched {
+    &.ng-invalid {
+      @extend .is-invalid;
+    }
+    &.ng-valid {
+      @extend .is-valid;
+    }
+  }
+}
+.form-group.has-error{
+  input,label,.validation-msg{
+    @extend .text-danger;
+  }
+}
+
+//
+// vertical spacing
+//
+.nav-top-wrapper,h1,h2,section{
+  display: block;
+  @extend .mb-4;
+}
+
+//
+// navigation
+//
+.nav-top-wrapper{
+  @extend .navbar;
+  @extend .navbar-expand-sm;
+  @extend .navbar-light;
+  @extend .bg-light;
+}
+.nav-top-main-wrapper, .nav-top-lang-wrapper, .nav-top-logout-wrapper{
+  align-self: flex-start;
+}
+.nav-top{
+  @extend .container;
+}
+.nav-top-main{
+  @extend .mr-auto;
+  .nav-item:first-child a{
+    padding-left: 0;
+  }
+}
+.nav-top-lang-wrapper{
+  @extend .ml-sm-auto;
+}
+
+//
+// own components
+//
+
+app-userinfo{
+  .user-info{
+    @extend .alert;
+    @extend .alert-info;
+  }
+}
+
+app-hero-search{
+  .heroes{
+    @extend .mt-2;
+  }
+}
+
+.heroes{
+  @extend .list-group;
+  @extend .container;
+  .hero{
+    @extend .list-group-item;
+    @extend .list-group-item-action;
+    @include make-row();
+    margin-left: 0;
+    margin-right: 0;
+    .name{
+      @include make-col-ready();
+      @include make-col(10,12);
+      padding-right: 0;
+      padding-left: 0;
+      //@extend .col;
+    }
+    .button-wrapper{
+      @include make-col-ready();
+      @include make-col(2,12);
+      padding-right: 0;
+      padding-left: 0;
+      @extend .text-right;
+      // @extend .col-auto;
+    }
+    .delete{
+      @extend .btn;
+      @extend .btn-sm;
+      @extend .btn-danger;
+    }
+  }
+}
